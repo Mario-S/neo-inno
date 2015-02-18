@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"  
-            fx:controller="de.scag.inno.controller.StatementController"
+            fx:controller="de.scag.inno.controller.MainController"
             styleClass="root">
     <center>
         <TabPane id="tabPane">
@@ -24,8 +24,8 @@
             <padding>
                 <Insets top="10" right="10" bottom="20" left="10"/>
             </padding>
-            <TextField/>
-            <Button text="..."/>
+            <TextField id="txtFile"/>
+            <Button text="..." onAction="#handleFileSelection" />
             <Button text="Cypher Statement"/>
         </FlowPane>
     </bottom>
