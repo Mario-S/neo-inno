@@ -8,12 +8,12 @@
             fx:controller="de.scag.inno.controller.StatementController"
             styleClass="root">
     <center>
-        <TabPane>
+        <TabPane id="tabPane">
             <tabs>
-                <Tab text="Technologien" >
+                <Tab text="Technologien" id="techTab">
                     <fx:include source="tab_tech.fxml"/>
                 </Tab>
-                <Tab text="Projekte" >
+                <Tab text="Projekte" id="projTab">
                     <fx:include source="tab_proj.fxml"/>
                 </Tab>
             </tabs>
