@@ -7,6 +7,7 @@ package de.scag.inno;
 
 import static java.awt.GraphicsEnvironment.isHeadless;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.Node;
@@ -46,20 +47,30 @@ public class GuiITest extends AbstractJemmyITest {
         return new TabPaneDock(getSceneDock().asParent(), "tabPane");
     }
 
+    private TabDock selectTab(String id) {
+        TabPaneDock tabPaneDock = getTabPaneDock();
+        TabDock tabDock = new TabDock(tabPaneDock.asTabParent(), (LookupCriteria<Tab>) (Tab tab) -> tab.getId().equals(id));
+        tabPaneDock.asSelectable().selector().select((Tab) tabDock.control());
+        return tabDock;
+    }
+
     @Test
-    public void testTabCount() {
+    public void testTabs_Count() {
         assumeTrue(!isHeadless());
         TabPaneDock tabPaneDock = getTabPaneDock();
-        assertEquals(2, tabPaneDock.getTabs().size());
+        List<Tab> tabs = tabPaneDock.asSelectable().getStates();
+        assertEquals(2, tabs.size());
+        for (Tab t : tabs) {
+            System.out.println("Selecting " + t.getText());
+            tabPaneDock.asSelectable().selector().select(t);
+        }
     }
 
     @Test
     public void testTechnolgieTab() {
         assumeTrue(!isHeadless());
-        
-        TabPaneDock tabPaneDock = getTabPaneDock();
-        TabDock tabDock = new TabDock(tabPaneDock.asTabParent(), (LookupCriteria<Tab>) (Tab cntrl) -> cntrl.getId().equals("techTab"));
-        tabDock.mouse().press();
+
+        TabDock tabDock = selectTab("techTab");
 
         for (int i = 0; i < 6; i++) {
             TextDock txtDock = new TextDock(tabDock.asParent(), i);
@@ -72,9 +83,7 @@ public class GuiITest extends AbstractJemmyITest {
     public void testProjektTab() {
         assumeTrue(!isHeadless());
 
-        TabPaneDock tabPaneDock = getTabPaneDock();
-        TabDock tabDock = new TabDock(tabPaneDock.asTabParent(), (LookupCriteria<Tab>) (Tab cntrl) -> cntrl.getId().equals("projTab"));
-        tabDock.mouse().press();
+        TabDock tabDock = selectTab("projTab");
 
         for (int i = 0; i < 2; i++) {
             TextDock txtDock = new TextDock(tabDock.asParent(), i);
