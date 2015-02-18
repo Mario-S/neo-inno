@@ -8,7 +8,7 @@
             fx:controller="de.scag.inno.controller.MainController"
             styleClass="root">
     <center>
-        <TabPane id="tabPane">
+        <TabPane fx:id="tabPane">
             <tabs>
                 <Tab text="Technologien" id="techTab">
                     <fx:include source="tab_tech.fxml"/>
@@ -24,7 +24,7 @@
             <padding>
                 <Insets top="10" right="10" bottom="20" left="10"/>
             </padding>
-            <TextField id="txtFile"/>
+            <TextField fx:id="txtFile"/>
             <Button text="..." onAction="#handleFileSelection" />
             <Button text="Cypher Statement"/>
         </FlowPane>

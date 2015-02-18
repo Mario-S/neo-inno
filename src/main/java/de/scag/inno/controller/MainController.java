@@ -4,7 +4,7 @@ import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.text.Text;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
 /**
@@ -15,14 +15,17 @@ import javafx.stage.FileChooser;
 public class MainController {
     
     @FXML
-    private Text txtFile;
+    private TextField txtFile;
 
     @FXML
     protected void handleFileSelection(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Output File");
         Node node = (Node) event.getSource();
-        fileChooser.showOpenDialog(node.getScene().getWindow());
+        File file = fileChooser.showOpenDialog(node.getScene().getWindow());
+        if(file != null){
+            txtFile.setText(file.getPath());
+        }
     }
 
 }
