@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+
+sourceCompatibility = '1.8'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+mainClassName = 'de.scag.inno.Main'
+
+wrapper {
+    gradleVersion = '2.2.1'
+}
+
+if (!hasProperty('mainClass')) {
+    ext.mainClass = mainClassName
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.10'
+    testCompile  "net.java.jemmy:JemmyFX:0.9.3-SNAPSHOT"
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="de.scag.inno.controller.TechNodeController">
+    <padding>
+        <Insets top="10" right="10" bottom="20" left="10"/>
+    </padding>
+    <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0"
+                  alignment="center" hgap="10" vgap="10">
+        <padding>
+            <Insets top="20" right="10" bottom="20" left="0"/>
+        </padding>
+        <columnConstraints>
+            <ColumnConstraints prefWidth="100"/>
+            <ColumnConstraints prefWidth="250"/>  
+        </columnConstraints>
+ 
+        <Label text="Name: *"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField 
+            GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    
+        <Label text="Version: *"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField 
+            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    
+        <Label text="Layer: *"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField 
+            GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    
+        <Label text="Status: *"
+                   GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField 
+            GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    
+        <Label text="GroupId:"
+                   GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextField 
+            GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+    
+        <Label text="ArtifactId:"
+                   GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField 
+            GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            
+        <Button GridPane.columnIndex="1" GridPane.rowIndex="6" 
+                    GridPane.halignment="RIGHT"
+                    text=" > " />
+
+    </GridPane>
+    <TableView GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <columns>
+            <TableColumn text="Name"/>
+            <TableColumn text="Version"/>
+            <TableColumn text="Layer"/>
+            <TableColumn text="Status"/>
+            <TableColumn text="GroupId"/>
+            <TableColumn text="ArtifactId"/>
+            <TableColumn />
+        </columns>    
+    </TableView>
+</GridPane>
+

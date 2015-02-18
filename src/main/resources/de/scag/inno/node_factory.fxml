@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"  
+            fx:controller="de.scag.inno.controller.StatementController"
+            styleClass="root">
+    <center>
+        <TabPane>
+            <tabs>
+                <Tab text="Technologien" >
+                    <fx:include source="tab_tech.fxml"/>
+                </Tab>
+                <Tab text="Projekte" >
+                    <fx:include source="tab_proj.fxml"/>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+    <bottom>
+        <FlowPane alignment="BASELINE_RIGHT"  hgap="5">
+            <padding>
+                <Insets top="10" right="10" bottom="20" left="10"/>
+            </padding>
+            <TextField/>
+            <Button text="..."/>
+            <Button text="Cypher Statement"/>
+        </FlowPane>
+    </bottom>
+
+    <stylesheets>
+        <URL value="@main.css" />
+    </stylesheets>
+</BorderPane>
+
