@@ -24,6 +24,7 @@ public class ColorComboBox extends ComboBox<Color> {
         ColorCell() {
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
             rectangle = new Rectangle(20, 10);
+            rectangle.setStroke(Color.BLACK);
         }
 
         @Override
