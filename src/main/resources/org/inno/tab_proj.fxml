@@ -10,8 +10,8 @@
     </padding>
     <TableView GridPane.columnIndex="0" GridPane.rowIndex="0">
         <columns>
-            <TableColumn text="Name"/>
-            <TableColumn text="Version"/>
+            <TableColumn text="%colName" />
+            <TableColumn text="%colVersion"/>
             <TableColumn />
         </columns>  
     </TableView>
@@ -25,12 +25,12 @@
             <ColumnConstraints prefWidth="250"/>  
         </columnConstraints>
  
-        <Label text="Name: *"
+        <Label text="%lblName"
                    GridPane.columnIndex="0" GridPane.rowIndex="0"/>
         <TextField 
             GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     
-        <Label text="Version: *"
+        <Label text="%lblVersion"
                    GridPane.columnIndex="0" GridPane.rowIndex="1"/>
         <TextField 
             GridPane.columnIndex="1" GridPane.rowIndex="1"/>

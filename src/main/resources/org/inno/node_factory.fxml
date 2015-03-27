@@ -10,10 +10,10 @@
     <center>
         <TabPane fx:id="tabPane">
             <tabs>
-                <Tab text="Technologien" id="techTab">
+                <Tab text="%tabTech" id="techTab">
                     <fx:include source="tab_tech.fxml"/>
                 </Tab>
-                <Tab text="Projekte" id="projTab">
+                <Tab text="%tabProj" id="projTab">
                     <fx:include source="tab_proj.fxml"/>
                 </Tab>
             </tabs>

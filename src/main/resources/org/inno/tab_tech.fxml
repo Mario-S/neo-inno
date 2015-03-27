@@ -13,12 +13,12 @@
     </padding>
      <TableView GridPane.columnIndex="0" GridPane.rowIndex="0">
         <columns>
-            <TableColumn text="Name"/>
-            <TableColumn text="Version"/>
-            <TableColumn text="Layer"/>
-            <TableColumn text="Status"/>
-            <TableColumn text="GroupId"/>
-            <TableColumn text="ArtifactId"/>
+            <TableColumn text="%colName" />
+            <TableColumn text="%colVersion"/>
+            <TableColumn text="%colLayer"/>
+            <TableColumn text="%colStatus"/>
+            <TableColumn text="%colGroupId"/>
+            <TableColumn text="%colArtifactId"/>
             <TableColumn />
         </columns>    
     </TableView>
@@ -32,22 +32,22 @@
             <ColumnConstraints prefWidth="250"/>  
         </columnConstraints>
  
-        <Label text="Name: *"
+        <Label text="%lblName"
                GridPane.columnIndex="0" GridPane.rowIndex="0"/>
         <TextField 
             GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     
-        <Label text="Version: *"
+        <Label text="%lblVersion"
                GridPane.columnIndex="0" GridPane.rowIndex="1"/>
         <TextField 
             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
     
-        <Label text="Layer: *"
+        <Label text="%lblLayer"
                GridPane.columnIndex="0" GridPane.rowIndex="2"/>
         <TextField 
             GridPane.columnIndex="1" GridPane.rowIndex="2"/>
     
-        <Label text="Status: *"
+        <Label text="%lblStatus"
                GridPane.columnIndex="0" GridPane.rowIndex="3"/>
         <ComboBox fx:id="cmbState" GridPane.columnIndex="1" 
                   GridPane.rowIndex="3">
@@ -60,12 +60,12 @@
             </items>
         </ComboBox>
     
-        <Label text="GroupId:"
+        <Label text="%lblGroupId"
                GridPane.columnIndex="0" GridPane.rowIndex="4"/>
         <TextField 
             GridPane.columnIndex="1" GridPane.rowIndex="4"/>
     
-        <Label text="ArtifactId:"
+        <Label text="%lblArtifactId"
                GridPane.columnIndex="0" GridPane.rowIndex="5"/>
         <TextField 
             GridPane.columnIndex="1" GridPane.rowIndex="5"/>
