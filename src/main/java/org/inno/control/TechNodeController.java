@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import org.controlsfx.validation.ValidationSupport;
 import static org.controlsfx.validation.Validator.createEmptyValidator;
+import org.datafx.controller.FXMLController;
 import org.inno.model.Technology;
 
 /**
@@ -14,6 +15,7 @@ import org.inno.model.Technology;
  *
  * @author spindizzy
  */
+@FXMLController("tab_tech.fxml")
 public class TechNodeController extends AbstractNodeController{
 
     @FXML

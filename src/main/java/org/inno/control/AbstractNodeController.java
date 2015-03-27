@@ -9,12 +9,17 @@ import javafx.scene.control.TextField;
 import org.controlsfx.validation.ValidationSupport;
 
 import static org.controlsfx.validation.Validator.createEmptyValidator;
+import org.datafx.controller.context.ApplicationContext;
+import org.datafx.controller.context.FXMLApplicationContext;
 
 /**
  *
  * @author spindizzy
  */
 abstract class AbstractNodeController implements Initializable{
+    
+    @FXMLApplicationContext
+    private ApplicationContext applicationContext;
     
     @FXML
     protected TextField txtName;
