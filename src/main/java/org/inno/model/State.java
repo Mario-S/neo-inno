@@ -7,4 +7,5 @@ package org.inno.model;
  */
 public enum State {
     Green, Yellow, Red;
+
 }

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.controller.ProjectNodeController">
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.control.ProjectNodeController">
     <padding>
         <Insets top="10" right="10" bottom="20" left="10"/>
     </padding>

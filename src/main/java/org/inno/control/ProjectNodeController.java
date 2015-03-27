@@ -1,15 +1,13 @@
-package org.inno.controller;
+package org.inno.control;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 /**
- * Controller for the 'Technologie' Tab.
- *
+ * Controller for the 'Projekt' Tab.
  * @author spindizzy
  */
-public class TechNodeController {
-
+public class ProjectNodeController {
     @FXML
     protected void addToTable(ActionEvent event) {
     }

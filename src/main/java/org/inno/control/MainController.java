@@ -1,4 +1,4 @@
-package org.inno.controller;
+package org.inno.control;
 
 import java.io.File;
 import javafx.event.ActionEvent;
