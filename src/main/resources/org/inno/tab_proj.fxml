@@ -8,38 +8,37 @@
     <padding>
         <Insets top="10" right="10" bottom="20" left="10"/>
     </padding>
-        <GridPane GridPane.columnIndex="0" GridPane.rowIndex="0" 
+    <TableView GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <columns>
+            <TableColumn text="Name"/>
+            <TableColumn text="Version"/>
+            <TableColumn />
+        </columns>  
+    </TableView>
+    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="0" 
                   alignment="center" hgap="10" vgap="10">
-            <padding>
-                <Insets top="20" right="10" bottom="20" left="0"/>
-            </padding>
-            <columnConstraints>
-                <ColumnConstraints prefWidth="100"/>
-                <ColumnConstraints prefWidth="250"/>  
-            </columnConstraints>
+        <padding>
+            <Insets top="20" right="10" bottom="20" left="10"/>
+        </padding>
+        <columnConstraints>
+            <ColumnConstraints prefWidth="100"/>
+            <ColumnConstraints prefWidth="250"/>  
+        </columnConstraints>
  
-            <Label text="Name: *"
+        <Label text="Name: *"
                    GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-            <TextField 
-                GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <TextField 
+            GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     
-            <Label text="Version: *"
+        <Label text="Version: *"
                    GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <TextField 
-                GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <TextField 
+            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
             
-            <Button GridPane.columnIndex="1" GridPane.rowIndex="2"
-                    GridPane.halignment="RIGHT" 
-                    text=" > " 
+        <Button GridPane.columnIndex="0" GridPane.rowIndex="2"
+                    text=" + " 
                     onAction="#addToTable" />
     
-        </GridPane>
-        <TableView GridPane.columnIndex="1" GridPane.rowIndex="0">
-            <columns>
-                <TableColumn text="Name"/>
-                <TableColumn text="Version"/>
-                <TableColumn />
-            </columns>  
-        </TableView>
+    </GridPane>
 </GridPane>
 
