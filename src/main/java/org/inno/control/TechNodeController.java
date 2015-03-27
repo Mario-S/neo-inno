@@ -1,16 +1,25 @@
 package org.inno.control;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import org.controlsfx.validation.ValidationSupport;
+import static org.controlsfx.validation.Validator.createEmptyValidator;
 
 /**
  * Controller for the 'Technologie' Tab.
  *
  * @author spindizzy
  */
-public class TechNodeController {
+public class TechNodeController extends AbstractNodeController{
 
     @FXML
-    protected void addToTable(ActionEvent event) {
+    private TextField txtLayer;
+
+    @Override
+    protected void initialize(ValidationSupport validationSupport, MessageFactory factory) {
+        super.initialize(validationSupport, factory);
+        validationSupport.registerValidator(txtLayer, createEmptyValidator(factory.getMessage("err.req.layer")));
     }
+    
+    
 }

@@ -27,12 +27,12 @@
  
         <Label text="%lblName"
                    GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <TextField 
+        <TextField fx:id="txtName"
             GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     
         <Label text="%lblVersion"
                    GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextField 
+        <TextField fx:id="txtVersion"
             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
             
         <Button GridPane.columnIndex="0" GridPane.rowIndex="2"
