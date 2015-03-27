@@ -10,7 +10,7 @@ import javafx.stage.FileChooser;
 /**
  * Controller to create the CYPHER statements
  *
- * @author schroeder
+ * @author spindizzy
  */
 public class MainController {
     
