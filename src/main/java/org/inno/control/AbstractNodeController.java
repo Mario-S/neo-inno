@@ -1,7 +1,6 @@
 package org.inno.control;
 
 import java.net.URL;
-import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,8 +40,10 @@ abstract class AbstractNodeController implements Initializable{
     
     @FXML
     protected void addToTable(ActionEvent event) {
-        if(validationSupport.isInvalid()){
-            System.err.println("WTF");
+        if(!validationSupport.isInvalid()){
+            doAdd();
         }
     }
+    
+    abstract void doAdd();
 }

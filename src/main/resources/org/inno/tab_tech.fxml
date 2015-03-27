@@ -12,7 +12,8 @@
     <padding>
         <Insets top="10" right="10" bottom="20" left="10"/>
     </padding>
-     <TableView GridPane.columnIndex="0" GridPane.rowIndex="0">
+     <TableView fx:id="tblTech"
+         GridPane.columnIndex="0" GridPane.rowIndex="0">
         <columns>
             <TableColumn text="%colName" />
             <TableColumn text="%colVersion"/>
