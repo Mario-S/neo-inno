@@ -1,4 +1,4 @@
-package de.scag.inno;
+package org.inno;
 
 import org.jemmy.fx.AppExecutor;
 import org.jemmy.fx.SceneDock;

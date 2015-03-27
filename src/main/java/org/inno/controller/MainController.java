@@ -1,4 +1,4 @@
-package de.scag.inno.controller;
+package org.inno.controller;
 
 import java.io.File;
 import javafx.event.ActionEvent;

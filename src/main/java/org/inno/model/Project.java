@@ -1,4 +1,4 @@
-package de.scag.inno.model;
+package org.inno.model;
 
 /**
  * Model class for a project.

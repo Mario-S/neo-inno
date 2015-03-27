@@ -3,24 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.scag.inno;
+package org.inno;
 
 import static java.awt.GraphicsEnvironment.isHeadless;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
-import org.jemmy.Point;
 import org.jemmy.fx.TextDock;
 import org.jemmy.fx.control.TabDock;
 import org.jemmy.fx.control.TabPaneDock;
 import org.jemmy.lookup.LookupCriteria;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.junit.Assume.assumeTrue;

@@ -4,7 +4,7 @@ apply plugin: 'eclipse'
 
 sourceCompatibility = '1.8'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-mainClassName = 'de.scag.inno.Main'
+mainClassName = 'org.inno.Main'
 
 wrapper {
     gradleVersion = '2.2.1'

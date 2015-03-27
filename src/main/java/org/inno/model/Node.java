@@ -1,4 +1,4 @@
-package de.scag.inno.model;
+package org.inno.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

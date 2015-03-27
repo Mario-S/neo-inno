@@ -1,4 +1,4 @@
-package de.scag.inno;
+package org.inno;
 
 import javafx.application.Application;
 import javafx.scene.Node;

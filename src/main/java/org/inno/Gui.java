@@ -1,4 +1,4 @@
-package de.scag.inno;
+package org.inno;
 
 import java.io.IOException;
 import javafx.application.Application;
