@@ -5,6 +5,6 @@ package de.scag.inno.model;
  * 
  * @author spindizzy
  */
-public class Project {
+public class Project extends Node{
     
 }

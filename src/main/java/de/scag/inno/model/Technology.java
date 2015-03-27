@@ -8,22 +8,13 @@ import javafx.beans.property.StringProperty;
  *
  * @author spindizzy
  */
-public class Technology {
+public class Technology extends Node{
 
-    private final StringProperty name = new SimpleStringProperty();
-    private final StringProperty version = new SimpleStringProperty();
     private final StringProperty layer = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
     private final StringProperty groupId = new SimpleStringProperty();
     private final StringProperty artifactId = new SimpleStringProperty();
 
-    public String getName() {
-        return name.get();
-    }
-
-    public String getVersion() {
-        return version.get();
-    }
 
     public String getLayer() {
         return layer.get();
@@ -41,13 +32,6 @@ public class Technology {
         return artifactId.get();
     }
 
-    public void setName(String name) {
-        this.name.set(name);
-    }
-
-    public void setVersion(String version) {
-        this.version.set(version);
-    }
 
     public void setLayer(String layer) {
         this.layer.set(layer);
@@ -65,13 +49,6 @@ public class Technology {
         this.artifactId.set(artifactId);
     }
 
-    public StringProperty nameProperty() {
-        return name;
-    }
-
-    public StringProperty versionProperty() {
-        return version;
-    }
 
     public StringProperty layerProperty() {
         return layer;
