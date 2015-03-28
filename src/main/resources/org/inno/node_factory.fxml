@@ -27,7 +27,7 @@
             </padding>
             <TextField fx:id="txtFile"/>
             <Button text="..." onAction="#handleFileSelection" />
-            <Button text="Cypher Statement"/>
+            <Button fx:id="btnCreate" disable="true"  text="Cypher Statement"/>
         </FlowPane>
     </bottom>
 
