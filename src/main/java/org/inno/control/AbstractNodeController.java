@@ -1,5 +1,7 @@
 package org.inno.control;
 
+import org.inno.util.ResourceBundleLoader;
+import org.inno.util.MessageFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -9,17 +11,12 @@ import javafx.scene.control.TextField;
 import org.controlsfx.validation.ValidationSupport;
 
 import static org.controlsfx.validation.Validator.createEmptyValidator;
-import org.datafx.controller.context.ApplicationContext;
-import org.datafx.controller.context.FXMLApplicationContext;
 
 /**
  *
  * @author spindizzy
  */
-abstract class AbstractNodeController implements Initializable{
-    
-    @FXMLApplicationContext
-    private ApplicationContext applicationContext;
+abstract class AbstractNodeController extends AbstractController{
     
     @FXML
     protected TextField txtName;
@@ -28,14 +25,16 @@ abstract class AbstractNodeController implements Initializable{
     protected TextField txtVersion;
     
     private final ValidationSupport validationSupport;
+    
+    private static final ResourceBundleLoader LOADER = ResourceBundleLoader.Instance;
 
     public AbstractNodeController() {
         validationSupport = new ValidationSupport();
     }
     
-    @Override
-    public void initialize(URL location, ResourceBundle bundle){
-        initialize(validationSupport, new MessageFactory(bundle));
+    @FXML
+    public void initialize(){
+        initialize(validationSupport, LOADER.getFactory());
     }
     
     protected void initialize(ValidationSupport validationSupport, MessageFactory factory){

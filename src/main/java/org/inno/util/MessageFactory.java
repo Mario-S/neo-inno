@@ -1,4 +1,4 @@
-package org.inno.control;
+package org.inno.util;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -7,14 +7,14 @@ import java.util.ResourceBundle;
  *
  * @author spindizzy
  */
-class MessageFactory {
+public final class MessageFactory {
     private final ResourceBundle bundle;
 
     MessageFactory(ResourceBundle bundle) {
         this.bundle = bundle;
     }
             
-    String getMessage(String key, Object ... args){
+    public String getMessage(String key, Object ... args){
         String msg;
         try{
             msg = bundle.getString(key);
