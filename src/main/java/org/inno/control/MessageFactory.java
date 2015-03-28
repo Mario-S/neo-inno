@@ -1,4 +1,4 @@
-package org.inno.util;
+package org.inno.control;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

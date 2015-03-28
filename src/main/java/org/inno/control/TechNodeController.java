@@ -1,6 +1,5 @@
 package org.inno.control;
 
-import org.inno.util.MessageFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;

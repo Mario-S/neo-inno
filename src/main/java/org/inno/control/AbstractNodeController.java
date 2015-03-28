@@ -1,12 +1,7 @@
 package org.inno.control;
 
-import org.inno.util.ResourceBundleLoader;
-import org.inno.util.MessageFactory;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import org.controlsfx.validation.ValidationSupport;
 
@@ -26,15 +21,14 @@ abstract class AbstractNodeController extends AbstractController{
     
     private final ValidationSupport validationSupport;
     
-    private static final ResourceBundleLoader LOADER = ResourceBundleLoader.Instance;
 
     public AbstractNodeController() {
         validationSupport = new ValidationSupport();
     }
     
-    @FXML
-    public void initialize(){
-        initialize(validationSupport, LOADER.getFactory());
+    @Override
+    protected void initialize(MessageFactory factory){
+        initialize(validationSupport, factory);
     }
     
     protected void initialize(ValidationSupport validationSupport, MessageFactory factory){

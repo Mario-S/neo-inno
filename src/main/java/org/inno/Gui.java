@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.inno.util.ResourceBundleLoader;
 
 /**
  *
@@ -26,7 +25,8 @@ public class Gui extends Application{
     }
 
     Parent getParent() throws IOException {
-        return FXMLLoader.load(getClass().getResource("node_factory.fxml"), ResourceBundleLoader.Instance.getBundle());
+        return FXMLLoader.load(getClass().getResource("node_factory.fxml"), 
+                ResourceBundle.getBundle("org.inno.bundles.bundle"));
     }
     
 }
