@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 abstract class AbstractController implements Initializable{
     private final Context context = Context.Instance;
 
-    protected Context getContext() {
+    protected final Context getContext() {
         return context;
     }
 

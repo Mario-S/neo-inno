@@ -44,9 +44,7 @@ public class TechNodeController extends AbstractNodeController{
 
     @Override
     void doAdd() {
-        tblTech.getItems().add(model);
+        getContext().getContent().add(model);
         model = new Technology();
     }
-    
-    
 }
