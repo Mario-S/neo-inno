@@ -9,10 +9,13 @@ import static java.awt.GraphicsEnvironment.isHeadless;
 import java.io.IOException;
 import java.util.List;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import org.jemmy.fx.TextDock;
+import org.jemmy.fx.control.ControlDock;
 import org.jemmy.fx.control.TabDock;
 import org.jemmy.fx.control.TabPaneDock;
+import org.jemmy.interfaces.Text;
 import org.jemmy.lookup.LookupCriteria;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -39,6 +42,10 @@ public class GuiITest extends AbstractJemmyITest {
     private TabPaneDock getTabPaneDock() {
         return new TabPaneDock(getSceneDock().asParent(), "tabPane");
     }
+    
+    private ControlDock getButton(String id){
+        return new ControlDock(getSceneDock().asParent(), id);
+    }
 
     private TabDock selectTab(String id) {
         TabPaneDock tabPaneDock = getTabPaneDock();
@@ -48,7 +55,7 @@ public class GuiITest extends AbstractJemmyITest {
     }
 
     @Test
-    public void testTabs_Count() {
+    public void testStartup() {
         assumeTrue(!isHeadless());
         TabPaneDock tabPaneDock = getTabPaneDock();
         List<Tab> tabs = tabPaneDock.asSelectable().getStates();
@@ -57,19 +64,22 @@ public class GuiITest extends AbstractJemmyITest {
             System.out.println("Selecting " + t.getText());
             tabPaneDock.asSelectable().selector().select(t);
         }
+        
+        ControlDock btnCreate = getButton("btnCreate");
+        assertTrue((boolean) btnCreate.isDisabled());
     }
 
     @Test
-    public void testTechnolgieTab() {
+    public void testTechnologyTab() {
         assumeTrue(!isHeadless());
 
         TabDock tabDock = selectTab("techTab");
 
         for (int i = 0; i < 6; i++) {
             TextDock txtDock = new TextDock(tabDock.asParent(), i);
-            assertNotNull(txtDock);
             assertFalse((boolean) txtDock.isDisabled());
         }
+
     }
 
     @Test

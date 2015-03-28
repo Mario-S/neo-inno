@@ -35,7 +35,8 @@
         <TextField fx:id="txtVersion"
             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
             
-        <Button GridPane.columnIndex="0" GridPane.rowIndex="2"
+        <Button fx:id="btnAddTech"
+            GridPane.columnIndex="0" GridPane.rowIndex="2"
                     text=" + " 
                     onAction="#addToTable" />
     
