@@ -1,5 +1,7 @@
 package org.inno.control;
 
+import static javafx.collections.FXCollections.observableArrayList;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
@@ -14,10 +16,16 @@ import org.inno.model.Technology;
  *
  * @author spindizzy
  */
-public class TechNodeController extends AbstractNodeController{
+public class TechnologyNodeController extends AbstractNodeController<Technology>{
 
     @FXML
     private TextField txtLayer;
+    
+    @FXML
+    private TextField txtGroupId;
+    
+    @FXML
+    private TextField txtArtifactId;
     
     @FXML
     private ComboBox<Color> cmbState;
@@ -27,7 +35,7 @@ public class TechNodeController extends AbstractNodeController{
     
     private Technology model;
 
-    public TechNodeController() {
+    public TechnologyNodeController() {
         model = new Technology();
     }
     
@@ -40,10 +48,15 @@ public class TechNodeController extends AbstractNodeController{
         txtName.textProperty().bindBidirectional(model.nameProperty());
         txtVersion.textProperty().bindBidirectional(model.versionProperty());
         txtLayer.textProperty().bindBidirectional(model.layerProperty());
+        txtGroupId.textProperty().bindBidirectional(model.groupIdProperty());
+        txtArtifactId.textProperty().bindBidirectional(model.artifacIdProperty());
+        
+        tblTech.setItems(tableItems);
     }
 
     @Override
     void doAdd() {
+        tableItems.add(model);
         getContext().getContent().add(model);
         model = new Technology();
     }

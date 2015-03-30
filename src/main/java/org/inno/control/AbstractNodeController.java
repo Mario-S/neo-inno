@@ -1,17 +1,21 @@
 package org.inno.control;
 
+import static javafx.collections.FXCollections.observableArrayList;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.controlsfx.validation.ValidationSupport;
 
 import static org.controlsfx.validation.Validator.createEmptyValidator;
+import org.inno.model.Node;
+import org.inno.model.Technology;
 
 /**
  *
  * @author spindizzy
  */
-abstract class AbstractNodeController extends AbstractController{
+abstract class AbstractNodeController<T extends Node> extends AbstractController{
     
     @FXML
     protected TextField txtName;
@@ -21,9 +25,12 @@ abstract class AbstractNodeController extends AbstractController{
     
     private final ValidationSupport validationSupport;
     
+    protected final ObservableList<T> tableItems;
+    
 
     public AbstractNodeController() {
         validationSupport = new ValidationSupport();
+        tableItems = observableArrayList();
     }
     
     @Override

@@ -5,22 +5,43 @@
 <?import javafx.scene.text.*?>
 <?import javafx.collections.*?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import org.inno.control.*?>
 
 
-<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.control.TechNodeController">
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.control.TechnologyNodeController">
     <padding>
         <Insets top="10" right="10" bottom="20" left="10"/>
     </padding>
-     <TableView fx:id="tblTech"
-         GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <TableView fx:id="tblTech"
+                GridPane.columnIndex="0" GridPane.rowIndex="0">
         <columns>
-            <TableColumn text="%colName" />
-            <TableColumn text="%colVersion"/>
-            <TableColumn text="%colLayer"/>
+            <TableColumn text="%colName" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="name" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="%colVersion">
+                <cellValueFactory>
+                    <PropertyValueFactory property="version" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="%colLayer">
+                <cellValueFactory>
+                    <PropertyValueFactory property="layer" />
+                </cellValueFactory>
+            </TableColumn>
             <TableColumn text="%colStatus"/>
-            <TableColumn text="%colGroupId"/>
-            <TableColumn text="%colArtifactId"/>
+            <TableColumn text="%colGroupId">
+                <cellValueFactory>
+                    <PropertyValueFactory property="groupId" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="%colArtifactId">
+                <cellValueFactory>
+                    <PropertyValueFactory property="artifactId" />
+                </cellValueFactory>
+            </TableColumn>
             <TableColumn />
         </columns>    
     </TableView>
@@ -37,22 +58,22 @@
         <Label text="%lblName"
                GridPane.columnIndex="0" GridPane.rowIndex="0"/>
         <TextField fx:id="txtName"
-            GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     
         <Label text="%lblVersion"
                GridPane.columnIndex="0" GridPane.rowIndex="1"/>
         <TextField fx:id="txtVersion"
-            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
     
         <Label text="%lblLayer"
                GridPane.columnIndex="0" GridPane.rowIndex="2"/>
         <TextField fx:id="txtLayer"
-            GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
     
         <Label text="%lblStatus"
                GridPane.columnIndex="0" GridPane.rowIndex="3"/>
         <ColorComboBox fx:id="cmbState" GridPane.columnIndex="1" 
-                  GridPane.rowIndex="3">
+                       GridPane.rowIndex="3">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <Color fx:value="RED"/>
@@ -64,12 +85,12 @@
     
         <Label text="%lblGroupId"
                GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <TextField 
+        <TextField fx:id="txtGroupId"
             GridPane.columnIndex="1" GridPane.rowIndex="4"/>
     
         <Label text="%lblArtifactId"
                GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <TextField 
+        <TextField fx:id="txtArtifactId"
             GridPane.columnIndex="1" GridPane.rowIndex="5"/>
             
         <Button GridPane.columnIndex="0" GridPane.rowIndex="6" 

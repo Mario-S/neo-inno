@@ -1,11 +1,13 @@
 package org.inno.control;
 
+import org.inno.model.Project;
+
 
 /**
  * Controller for the 'Projekt' Tab.
  * @author spindizzy
  */
-public class ProjectNodeController extends AbstractNodeController{
+public class ProjectNodeController extends AbstractNodeController<Project>{
 
     @Override
     void doAdd() {
