@@ -21,6 +21,8 @@ public class ProjectNodeController extends AbstractNodeController<Project> {
 
     @Override
     Project getModel() {
+        model.setName(txtName.getText());
+        model.setVersion(txtVersion.getText());
         return model;
     }
 
@@ -29,5 +31,11 @@ public class ProjectNodeController extends AbstractNodeController<Project> {
         createModel();
     }
 
+    @Override
+    void bind(Project model) {
+    }
 
+    @Override
+    void unbind(Project model) {
+    }
 }

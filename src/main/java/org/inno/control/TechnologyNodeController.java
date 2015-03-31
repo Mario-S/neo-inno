@@ -44,9 +44,6 @@ public class TechnologyNodeController extends AbstractNodeController<Technology>
         validationSupport.registerValidator(txtLayer, createEmptyValidator(factory.getMessage("err.req.layer")));
         validationSupport.registerValidator(cmbState, createEmptyValidator(factory.getMessage("err.req.state")));
 
-        txtLayer.textProperty().bindBidirectional(model.layerProperty());
-        txtGroupId.textProperty().bindBidirectional(model.groupIdProperty());
-        txtArtifactId.textProperty().bindBidirectional(model.artifacIdProperty());
     }
 
     @Override
@@ -57,6 +54,20 @@ public class TechnologyNodeController extends AbstractNodeController<Technology>
     @Override
     void onPostAdd() {
         createModel();
+    }
+
+    @Override
+    void bind(Technology model) {
+        txtLayer.textProperty().bindBidirectional(model.layerProperty());
+        txtGroupId.textProperty().bindBidirectional(model.groupIdProperty());
+        txtArtifactId.textProperty().bindBidirectional(model.artifacIdProperty());
+    }
+
+    @Override
+    void unbind(Technology model) {
+        txtLayer.textProperty().unbindBidirectional(model.layerProperty());
+        txtGroupId.textProperty().unbindBidirectional(model.groupIdProperty());
+        txtArtifactId.textProperty().unbindBidirectional(model.artifacIdProperty());
     }
 
 

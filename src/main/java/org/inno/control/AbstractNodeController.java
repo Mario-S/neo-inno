@@ -40,18 +40,30 @@ abstract class AbstractNodeController<T extends Node> extends AbstractController
     }
 
     @Override
-    protected void initialize(MessageFactory factory) {
+    final void initialize(MessageFactory factory) {
         initialize(validationSupport, factory);
+
+        bind();
+        table.setItems(getModelList());
     }
 
     protected void initialize(ValidationSupport validationSupport, MessageFactory factory) {
         validationSupport.registerValidator(txtName, createEmptyValidator(factory.getMessage("err.req.name")));
         validationSupport.registerValidator(txtVersion, createEmptyValidator(factory.getMessage("err.req.version")));
+    }
 
-        txtName.textProperty().bindBidirectional(getModel().nameProperty());
-        txtVersion.textProperty().bindBidirectional(getModel().versionProperty());
+    private void bind() {
+        final T model = getModel();
+        txtName.textProperty().bindBidirectional(model.nameProperty());
+        txtVersion.textProperty().bindBidirectional(model.versionProperty());
+        bind(model);
+    }
 
-        table.setItems(getModelList());
+    private void unbind() {
+        final T model = getModel();
+        txtName.textProperty().unbindBidirectional(model.nameProperty());
+        txtVersion.textProperty().unbindBidirectional(model.versionProperty());
+        unbind(model);
     }
 
     /**
@@ -62,11 +74,21 @@ abstract class AbstractNodeController<T extends Node> extends AbstractController
     @FXML
     protected void addToTable(ActionEvent event) {
         if (!validationSupport.isInvalid()) {
-            modelList.add(getModel());
-            onPostAdd();
+            T model = getModel();
+            if (!modelList.contains(model)) {
+                unbind();
+                modelList.add(model);
+                onPostAdd();
+                bind();
+            }
         }
     }
 
+    /**
+     * This method returns a single model.
+     *
+     * @return
+     */
     abstract T getModel();
 
     /**
@@ -74,6 +96,15 @@ abstract class AbstractNodeController<T extends Node> extends AbstractController
      */
     abstract void onPostAdd();
 
+    abstract void bind(T model);
+
+    abstract void unbind(T model);
+
+    /**
+     * This method returns a list of models.
+     *
+     * @return
+     */
     protected ObservableList<T> getModelList() {
         return modelList;
     }

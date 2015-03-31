@@ -31,6 +31,10 @@ public class MainController extends AbstractController implements LookupListener
         result = getContext().getLookup().lookupResult(org.inno.model.Node.class);
         result.addLookupListener(this);
     }
+    
+    @Override
+    void initialize(MessageFactory factory) {
+    }
 
     @FXML
     protected void handleFileSelection(ActionEvent event) {

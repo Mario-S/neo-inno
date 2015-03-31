@@ -39,8 +39,8 @@ public class Node {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.name);
-        hash = 53 * hash + Objects.hashCode(this.version);
+        hash = 53 * hash + Objects.hashCode(this.getName());
+        hash = 53 * hash + Objects.hashCode(this.getVersion());
         return hash;
     }
 
@@ -53,10 +53,10 @@ public class Node {
             return false;
         }
         final Node other = (Node) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.getName(), other.getName())) {
             return false;
         }
-        if (!Objects.equals(this.version, other.version)) {
+        if (!Objects.equals(this.getVersion(), other.getVersion())) {
             return false;
         }
         return true;

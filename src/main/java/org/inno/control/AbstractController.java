@@ -20,9 +20,7 @@ abstract class AbstractController implements Initializable{
         initialize(new MessageFactory(resources));
     }
     
-    protected void initialize(MessageFactory factory){
-        
-    }
+    abstract void initialize(MessageFactory factory);
     
     
 }
