@@ -2,16 +2,32 @@ package org.inno.control;
 
 import org.inno.model.Project;
 
-
 /**
  * Controller for the 'Projekt' Tab.
+ *
  * @author spindizzy
  */
-public class ProjectNodeController extends AbstractNodeController<Project>{
+public class ProjectNodeController extends AbstractNodeController<Project> {
+
+    private Project model;
+
+    public ProjectNodeController() {
+        createModel();
+    }
+
+    private void createModel() {
+        model = new Project();
+    }
 
     @Override
-    void doAdd() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Project getModel() {
+        return model;
     }
-    
+
+    @Override
+    void onPostAdd() {
+        createModel();
+    }
+
+
 }
