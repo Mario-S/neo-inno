@@ -31,7 +31,11 @@
                     <PropertyValueFactory property="layer" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="%colStatus"/>
+            <TableColumn text="%colStatus">
+                <cellValueFactory>
+                    <PropertyValueFactory property="status" />
+                </cellValueFactory>
+            </TableColumn>
             <TableColumn text="%colGroupId">
                 <cellValueFactory>
                     <PropertyValueFactory property="groupId" />
