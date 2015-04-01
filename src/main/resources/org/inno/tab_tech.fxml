@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.collections.*?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import org.inno.control.*?>
+<?import org.inno.model.*?>
 
 
 <GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.control.TechnologyNodeController">
@@ -72,16 +72,16 @@
     
         <Label text="%lblStatus"
                GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <ColorComboBox fx:id="cmbState" GridPane.columnIndex="1" 
+        <StateComboBox fx:id="cmbState" GridPane.columnIndex="1" 
                        GridPane.rowIndex="3">
             <items>
                 <FXCollections fx:factory="observableArrayList">
-                    <Color fx:value="RED"/>
-                    <Color fx:value="YELLOW"/>
-                    <Color fx:value="GREEN"/>
+                    <State fx:value="Red"/>
+                    <State fx:value="Yellow"/>
+                    <State fx:value="Green"/>
                 </FXCollections>
             </items>
-        </ColorComboBox>
+        </StateComboBox>
     
         <Label text="%lblGroupId"
                GridPane.columnIndex="0" GridPane.rowIndex="4"/>

@@ -1,8 +1,6 @@
 package org.inno.control;
 
 import javafx.fxml.JavaFXBuilderFactory;
-import javafx.scene.control.ComboBox;
-import javafx.scene.paint.Color;
 import javafx.util.Builder;
 import javafx.util.BuilderFactory;
 
@@ -17,7 +15,7 @@ public class CustomBuilderFactory implements BuilderFactory {
     @Override
     public Builder<?> getBuilder(Class<?> type) {
         Builder builder;
-        if (type == ColorComboBox.class) {
+        if (type == StateComboBox.class) {
             builder = new ColorComboBoxBuilder();
         }else{
             builder = defaultBuilderFactory.getBuilder(type);
@@ -25,11 +23,11 @@ public class CustomBuilderFactory implements BuilderFactory {
         return builder;
     }
 
-    private class ColorComboBoxBuilder implements Builder<ColorComboBox> {
+    private class ColorComboBoxBuilder implements Builder<StateComboBox> {
 
         @Override
-        public ColorComboBox build() {
-            return new ColorComboBox();
+        public StateComboBox build() {
+            return new StateComboBox();
         }
     }
 }

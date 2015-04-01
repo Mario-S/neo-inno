@@ -2,16 +2,16 @@ package org.inno.control;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.scene.paint.Color;
+import org.inno.model.State;
 
 /**
  *
  * @author spindizzy
  */
-public class ColorComboBox extends ComboBox<Color> {
+public class StateComboBox extends ComboBox<State> {
 
-    public ColorComboBox() {
+    public StateComboBox() {
         setButtonCell(new ColorCell());
-        setCellFactory((ListView<Color> p) -> new ColorCell());
+        setCellFactory((ListView<State> p) -> new ColorCell());
     }
 }

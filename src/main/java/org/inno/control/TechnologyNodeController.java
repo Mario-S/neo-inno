@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import org.controlsfx.validation.ValidationSupport;
 import static org.controlsfx.validation.Validator.createEmptyValidator;
+import org.inno.model.State;
 import org.inno.model.Technology;
 
 /**
@@ -26,7 +27,7 @@ public class TechnologyNodeController extends AbstractNodeController<Technology>
     private TextField txtArtifactId;
 
     @FXML
-    private ComboBox<Color> cmbState;
+    private ComboBox<State> cmbState;
 
     private Technology model;
 
@@ -61,6 +62,7 @@ public class TechnologyNodeController extends AbstractNodeController<Technology>
         txtLayer.textProperty().bindBidirectional(model.layerProperty());
         txtGroupId.textProperty().bindBidirectional(model.groupIdProperty());
         txtArtifactId.textProperty().bindBidirectional(model.artifacIdProperty());
+        cmbState.valueProperty().bindBidirectional(model.statusProperty());
     }
 
     @Override
@@ -68,6 +70,7 @@ public class TechnologyNodeController extends AbstractNodeController<Technology>
         txtLayer.textProperty().unbindBidirectional(model.layerProperty());
         txtGroupId.textProperty().unbindBidirectional(model.groupIdProperty());
         txtArtifactId.textProperty().unbindBidirectional(model.artifacIdProperty());
+        cmbState.valueProperty().unbindBidirectional(model.statusProperty());
     }
 
 

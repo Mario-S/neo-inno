@@ -1,5 +1,7 @@
 package org.inno.model;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -11,7 +13,7 @@ import javafx.beans.property.StringProperty;
 public class Technology extends Node{
 
     private final StringProperty layer = new SimpleStringProperty();
-    private final StringProperty status = new SimpleStringProperty();
+    private final ObjectProperty<State> status = new SimpleObjectProperty<>(State.Red);
     private final StringProperty groupId = new SimpleStringProperty();
     private final StringProperty artifactId = new SimpleStringProperty();
 
@@ -20,7 +22,7 @@ public class Technology extends Node{
         return layer.get();
     }
 
-    public String getStatus() {
+    public State getStatus() {
         return status.get();
     }
 
@@ -37,7 +39,7 @@ public class Technology extends Node{
         this.layer.set(layer);
     }
 
-    public void setStatus(String status) {
+    public void setStatus(State status) {
         this.status.set(status);
     }
 
@@ -54,7 +56,7 @@ public class Technology extends Node{
         return layer;
     }
 
-    public StringProperty statusProperty() {
+    public ObjectProperty<State> statusProperty() {
         return status;
     }
 
