@@ -35,6 +35,9 @@
                 <cellValueFactory>
                     <PropertyValueFactory property="status" />
                 </cellValueFactory>
+                <cellFactory>
+                    <TableStateCellFactory />
+                </cellFactory>
             </TableColumn>
             <TableColumn text="%colGroupId">
                 <cellValueFactory>
