@@ -9,13 +9,11 @@ import static java.awt.GraphicsEnvironment.isHeadless;
 import java.io.IOException;
 import java.util.List;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import org.jemmy.fx.TextDock;
 import org.jemmy.fx.control.ControlDock;
 import org.jemmy.fx.control.TabDock;
 import org.jemmy.fx.control.TabPaneDock;
-import org.jemmy.interfaces.Text;
 import org.jemmy.lookup.LookupCriteria;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -59,7 +57,7 @@ public class GuiITest extends AbstractJemmyITest {
         assumeTrue(!isHeadless());
         TabPaneDock tabPaneDock = getTabPaneDock();
         List<Tab> tabs = tabPaneDock.asSelectable().getStates();
-        assertEquals(2, tabs.size());
+        assertEquals(3, tabs.size());
         for (Tab t : tabs) {
             System.out.println("Selecting " + t.getText());
             tabPaneDock.asSelectable().selector().select(t);

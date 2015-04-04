@@ -16,6 +16,9 @@
                 <Tab text="%tabProj" id="projTab">
                     <fx:include source="tab_proj.fxml"/>
                 </Tab>
+                <Tab text="%tabRelation" id="relationTab">
+                    <fx:include source="tab_relation.fxml"/>
+                </Tab>
             </tabs>
         </TabPane>
     </center>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.control.RelationController">
+    <padding>
+        <Insets top="10" right="10" bottom="20" left="10"/>
+    </padding>
+    <TableView fx:id="table"
+        GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <columns>
+            <TableColumn text="%colName" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="name" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="%colVersion">
+                <cellValueFactory>
+                    <PropertyValueFactory property="version" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn />
+        </columns>  
+    </TableView>
+    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="0" 
+                  alignment="center" hgap="10" vgap="10">
+
+    
+    </GridPane>
+</GridPane>
+
