@@ -5,17 +5,18 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import org.inno.control.*?>
+<?language javascript?>
 
 <GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.control.RelationController">
     <padding>
         <Insets top="10" right="10" bottom="20" left="10"/>
     </padding>
     <Label text="%proj"
-                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+           GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <Label text="%tech"
-                   GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+           GridPane.columnIndex="2" GridPane.rowIndex="0"/>
     <TableView fx:id="tableProj"
-        GridPane.columnIndex="0" GridPane.rowIndex="1">
+               GridPane.columnIndex="0" GridPane.rowIndex="1">
         <columns>
             <TableColumn text="%colName" >
                 <cellValueFactory>
@@ -29,10 +30,10 @@
             </TableColumn>
         </columns>  
     </TableView>
-     <Label text=" = > "
-                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Label text=" = > "
+            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
     <TableView fx:id="tableTech"
-        GridPane.columnIndex="2" GridPane.rowIndex="1">
+               GridPane.columnIndex="2" GridPane.rowIndex="1">
         <columns>
             <TableColumn text="%colName" >
                 <cellValueFactory>
@@ -69,5 +70,9 @@
             </TableColumn>
         </columns>  
     </TableView>
+    <fx:script>
+        table.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
+    </fx:script>
 </GridPane>
+
 
