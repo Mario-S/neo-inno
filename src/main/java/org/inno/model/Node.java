@@ -53,6 +53,13 @@ public class Node {
             return false;
         }
         final Node other = (Node) obj;
+        if (!hasEqualFields(other)) {
+            return false;
+        }
+        return true;
+    }
+    
+    boolean hasEqualFields(Node other){
         if (!Objects.equals(this.getName(), other.getName())) {
             return false;
         }

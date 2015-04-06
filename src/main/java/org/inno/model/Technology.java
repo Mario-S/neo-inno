@@ -1,5 +1,6 @@
 package org.inno.model;
 
+import java.util.Objects;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -67,5 +68,44 @@ public class Technology extends Node{
     public StringProperty artifacIdProperty() {
         return artifactId;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 29 * hash + Objects.hashCode(getLayer());
+        hash = 29 * hash + Objects.hashCode(getStatus());
+        hash = 29 * hash + Objects.hashCode(getGroupId());
+        hash = 29 * hash + Objects.hashCode(getArtifactId());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Technology other = (Technology) obj;
+        if(!hasEqualFields(other)){
+            return false;
+        }
+        if (!Objects.equals(this.getLayer(), other.getLayer())) {
+            return false;
+        }
+        if (!Objects.equals(this.getStatus(), other.getStatus())) {
+            return false;
+        }
+        if (!Objects.equals(this.getGroupId(), other.getGroupId())) {
+            return false;
+        }
+        if (!Objects.equals(this.getArtifactId(), other.getArtifactId())) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }
