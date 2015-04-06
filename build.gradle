@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
+apply plugin: 'project-report'
 
 sourceCompatibility = '1.8'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
@@ -25,6 +26,7 @@ if (!hasProperty('mainClass')) {
 
 repositories {
     mavenCentral()
+    jcenter()
     maven {
         url "https://oss.sonatype.org/content/repositories/snapshots"
     }
@@ -36,7 +38,10 @@ repositories {
 dependencies {
     compile "org.controlsfx:controlsfx:8.20.8", "org.javafxdata:datafx-core:2.0.2",
     "org.netbeans.api:org-openide-util-lookup:RELEASE80"
-    testCompile group: 'junit', name: 'junit', version: '4.10'
-    testCompile  "net.java.jemmy:JemmyFX:0.9.3-SNAPSHOT"
-    testCompile "org.mockito:mockito-all:1.10.19"
+    testCompile "net.java.jemmy:JemmyFX:0.9.3-SNAPSHOT"
+    testCompile ("org.mockito:mockito-core:1.10.19"){
+        exclude group: 'org.hamcrest'
+    }
+    testCompile "org.testfx:testfx-core:4.0.+"
+    testCompile "org.testfx:testfx-junit:4.0.+"
 }

@@ -12,12 +12,12 @@
     <TableView fx:id="table"
         GridPane.columnIndex="0" GridPane.rowIndex="0">
         <columns>
-            <TableColumn text="%colName" >
+            <TableColumn text="%colName" fx:id="colName">
                 <cellValueFactory>
                     <PropertyValueFactory property="name" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="%colVersion">
+            <TableColumn text="%colVersion" fx:id="colVersion">
                 <cellValueFactory>
                     <PropertyValueFactory property="version" />
                 </cellValueFactory>

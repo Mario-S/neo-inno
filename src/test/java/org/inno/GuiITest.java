@@ -18,11 +18,13 @@ import org.jemmy.lookup.LookupCriteria;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.junit.Assume.assumeTrue;
+import org.junit.Ignore;
 
 /**
  *
  * @author spindizzy
  */
+@Ignore
 public class GuiITest extends AbstractJemmyITest {
 
     @Override
