@@ -8,7 +8,7 @@
 <?language javascript?>
 
 <GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.control.RelationController"
-onMouseClicked="#update" onKeyReleased="#update" >
+onMouseClicked="#update" >
     <padding>
         <Insets top="10" right="10" bottom="20" left="10"/>
     </padding>
@@ -71,6 +71,9 @@ onMouseClicked="#update" onKeyReleased="#update" >
             </TableColumn>
         </columns>  
     </TableView>
+    <Button GridPane.columnIndex="3" GridPane.rowIndex="2" 
+                text="%ok" 
+                onAction="#updateModel"/>
     <fx:script>
         tableTech.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
     </fx:script>

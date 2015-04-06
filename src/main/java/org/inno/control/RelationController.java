@@ -1,6 +1,15 @@
 package org.inno.control;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import static java.util.Optional.of;
+import java.util.Set;
 import static javafx.collections.FXCollections.observableArrayList;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,6 +41,10 @@ public class RelationController extends AbstractController implements LookupList
 
     @FXML
     private TableView tableTech;
+    
+    private final Map<Project,Set<Technology>> model;
+    
+    private Optional<Project> selectedProject;
 
     public RelationController() {
         techList = observableArrayList();
@@ -40,12 +53,30 @@ public class RelationController extends AbstractController implements LookupList
         projResult = getContext().getLookup().lookupResult(Project.class);
         techResult.addLookupListener(this);
         projResult.addLookupListener(this);
+        model = new HashMap<>();
     }
 
     @Override
     void initialize(MessageFactory factory) {
-        tableTech.setItems(techList);
         tableProj.setItems(projList);
+        tableTech.setItems(techList);
+        tableProj.getSelectionModel().getSelectedIndices().addListener((ListChangeListener.Change c) -> {
+            List<Integer> selected = c.getList();
+            if(!selected.isEmpty()){
+                Project p = projList.get(selected.iterator().next());
+                if(!model.containsKey(p)){
+                    model.put(p, new HashSet<>());
+                }
+                selectedProject = of(p);
+            }
+        });
+        tableTech.getSelectionModel().getSelectedIndices().addListener((ListChangeListener.Change c) -> {
+            if(selectedProject.isPresent()){
+                Set<Technology> technologies = model.get(selectedProject.get());
+                List<Integer> selected = c.getList();
+                selected.forEach(index -> technologies.add(techList.get(index)));
+            }
+        });
     }
     
     @FXML
@@ -59,6 +90,13 @@ public class RelationController extends AbstractController implements LookupList
         techList.addAll(techResult.allInstances());
         projList.clear();
         projList.addAll(projResult.allInstances());
+    }
+    
+    @FXML
+    void updateModel(ActionEvent event){
+        System.err.println(model);
+        getContext().getContent().remove(model);
+        getContext().getContent().add(model);
     }
 
 }
