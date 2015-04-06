@@ -7,7 +7,8 @@
 <?import org.inno.control.*?>
 <?language javascript?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.control.RelationController">
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.control.RelationController"
+onMouseClicked="#update" onKeyReleased="#update" >
     <padding>
         <Insets top="10" right="10" bottom="20" left="10"/>
     </padding>
@@ -71,7 +72,7 @@
         </columns>  
     </TableView>
     <fx:script>
-        table.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
+        tableTech.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
     </fx:script>
 </GridPane>
 

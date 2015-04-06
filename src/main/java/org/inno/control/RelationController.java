@@ -1,8 +1,8 @@
 package org.inno.control;
 
-import java.util.Collection;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import org.inno.model.Project;
@@ -17,7 +17,7 @@ import org.openide.util.LookupListener;
  *
  * @author schroeder
  */
-public class RelationController extends AbstractController {
+public class RelationController extends AbstractController implements LookupListener {
 
     private final ObservableList<Technology> techList;
 
@@ -38,8 +38,8 @@ public class RelationController extends AbstractController {
         projList = observableArrayList();
         techResult = getContext().getLookup().lookupResult(Technology.class);
         projResult = getContext().getLookup().lookupResult(Project.class);
-        techResult.addLookupListener(new TechnologyResultListener());
-        projResult.addLookupListener(new ProjectResultListener());
+        techResult.addLookupListener(this);
+        projResult.addLookupListener(this);
     }
 
     @Override
@@ -47,25 +47,18 @@ public class RelationController extends AbstractController {
         tableTech.setItems(techList);
         tableProj.setItems(projList);
     }
-
-    private class TechnologyResultListener implements LookupListener {
-
-        @Override
-        public void resultChanged(LookupEvent le) {
-            Result<Technology> res = (Result<Technology>) le.getSource();
-            techList.clear();
-            techList.addAll(res.allInstances());
-        }
+    
+    @FXML
+    void update(ActionEvent event){
+        resultChanged(null);
     }
 
-    private class ProjectResultListener implements LookupListener {
-
-        @Override
-        public void resultChanged(LookupEvent le) {
-            Result<Project> res = (Result<Project>) le.getSource();
-            projList.clear();
-            projList.addAll(res.allInstances());
-        }
-
+    @Override
+    public void resultChanged(LookupEvent le) {
+        techList.clear();
+        techList.addAll(techResult.allInstances());
+        projList.clear();
+        projList.addAll(projResult.allInstances());
     }
+
 }
