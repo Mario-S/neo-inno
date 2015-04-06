@@ -30,7 +30,7 @@
             </padding>
             <TextField fx:id="txtFile"/>
             <Button text="..." onAction="#handleFileSelection" />
-            <Button fx:id="btnCreate" disable="${controller.disabled}"  text="Cypher Statement"/>
+            <Button fx:id="btnCreate" text="Cypher Statement"/>
         </FlowPane>
     </bottom>
 
