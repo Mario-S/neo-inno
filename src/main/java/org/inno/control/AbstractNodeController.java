@@ -33,14 +33,18 @@ abstract class AbstractNodeController<T extends Node> extends AbstractController
 
     private final ObservableList<T> modelList;
 
-    public AbstractNodeController() {
-        validationSupport = new ValidationSupport();
+    AbstractNodeController(ValidationSupport validationSupport) {
+        this.validationSupport = validationSupport;
         modelList = observableArrayList();
         modelList.addListener(new ModelListChangeListener());
     }
 
+    public AbstractNodeController() {
+        this(new ValidationSupport());
+    }
+
     @Override
-    final void initialize(MessageFactory factory) {
+    void initialize(MessageFactory factory) {
         initialize(validationSupport, factory);
 
         bind();

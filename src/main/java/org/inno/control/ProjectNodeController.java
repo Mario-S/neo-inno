@@ -1,5 +1,6 @@
 package org.inno.control;
 
+import org.controlsfx.validation.ValidationSupport;
 import org.inno.model.Project;
 
 /**
@@ -11,6 +12,11 @@ public class ProjectNodeController extends AbstractNodeController<Project> {
 
     private Project model;
 
+    ProjectNodeController(ValidationSupport validationSupport) {
+        super(validationSupport);
+        createModel();
+    }
+
     public ProjectNodeController() {
         createModel();
     }
@@ -21,8 +27,8 @@ public class ProjectNodeController extends AbstractNodeController<Project> {
 
     @Override
     Project getModel() {
-        model.setName(txtName.getText());
-        model.setVersion(txtVersion.getText());
+        model.setName((txtName != null) ? txtName.getText() : null);
+        model.setVersion((txtVersion != null) ? txtVersion.getText() : null);
         return model;
     }
 
