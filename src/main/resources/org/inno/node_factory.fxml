@@ -10,13 +10,13 @@
     <center>
         <TabPane fx:id="tabPane">
             <tabs>
-                <Tab text="%tech" id="techTab">
+                <Tab text="%tech" fx:id="techTab" id="techTab">
                     <fx:include source="tab_tech.fxml"/>
                 </Tab>
-                <Tab text="%proj" id="projTab">
+                <Tab text="%proj" fx:id="projTab" id="projTab">
                     <fx:include source="tab_proj.fxml"/>
                 </Tab>
-                <Tab text="%relation" id="relationTab">
+                <Tab text="%relation" fx:id="relationTab" id="relationTab">
                     <fx:include source="tab_relation.fxml"/>
                 </Tab>
             </tabs>
@@ -30,7 +30,7 @@
             </padding>
             <TextField fx:id="txtFile"/>
             <Button text="..." onAction="#handleFileSelection" />
-            <Button fx:id="btnCreate" disable="true"  text="Cypher Statement"/>
+            <Button fx:id="btnCreate" disable="${controller.disabled}"  text="Cypher Statement"/>
         </FlowPane>
     </bottom>
 

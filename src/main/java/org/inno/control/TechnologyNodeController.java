@@ -1,10 +1,8 @@
 package org.inno.control;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import org.controlsfx.validation.ValidationSupport;
 import static org.controlsfx.validation.Validator.createEmptyValidator;
 import org.inno.model.State;

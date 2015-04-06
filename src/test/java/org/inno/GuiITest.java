@@ -21,7 +21,7 @@ import static org.junit.Assume.assumeTrue;
 
 /**
  *
- * @author schroeder
+ * @author spindizzy
  */
 public class GuiITest extends AbstractJemmyITest {
 
@@ -40,8 +40,8 @@ public class GuiITest extends AbstractJemmyITest {
     private TabPaneDock getTabPaneDock() {
         return new TabPaneDock(getSceneDock().asParent(), "tabPane");
     }
-    
-    private ControlDock getButton(String id){
+
+    private ControlDock getButton(String id) {
         return new ControlDock(getSceneDock().asParent(), id);
     }
 
@@ -59,10 +59,12 @@ public class GuiITest extends AbstractJemmyITest {
         List<Tab> tabs = tabPaneDock.asSelectable().getStates();
         assertEquals(3, tabs.size());
         for (Tab t : tabs) {
-            System.out.println("Selecting " + t.getText());
-            tabPaneDock.asSelectable().selector().select(t);
+            if (!t.isDisabled()) {
+                System.out.println("Selecting " + t.getText());
+                tabPaneDock.asSelectable().selector().select(t);
+            }
         }
-        
+
         ControlDock btnCreate = getButton("btnCreate");
         assertTrue((boolean) btnCreate.isDisabled());
     }
