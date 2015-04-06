@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import java.util.Set;
 import static javafx.collections.FXCollections.observableArrayList;
@@ -61,11 +62,15 @@ public class RelationController extends AbstractController implements LookupList
         tableProj.setItems(projList);
         tableTech.setItems(techList);
         tableProj.getSelectionModel().getSelectedIndices().addListener((ListChangeListener.Change c) -> {
+            selectedProject = empty();
             List<Integer> selected = c.getList();
             if(!selected.isEmpty()){
+                tableTech.getSelectionModel().clearSelection();
                 Project p = projList.get(selected.iterator().next());
                 if(!model.containsKey(p)){
                     model.put(p, new HashSet<>());
+                }else{
+                    model.get(p).forEach(t -> tableTech.getSelectionModel().select(t));
                 }
                 selectedProject = of(p);
             }
@@ -94,7 +99,6 @@ public class RelationController extends AbstractController implements LookupList
     
     @FXML
     void updateModel(ActionEvent event){
-        System.err.println(model);
         getContext().getContent().remove(model);
         getContext().getContent().add(model);
     }
