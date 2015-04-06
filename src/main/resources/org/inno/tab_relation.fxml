@@ -4,13 +4,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import org.inno.control.*?>
 
 <GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.inno.control.RelationController">
     <padding>
         <Insets top="10" right="10" bottom="20" left="10"/>
     </padding>
-    <TableView fx:id="table"
-        GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <Label text="%proj"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Label text="%tech"
+                   GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+    <TableView fx:id="tableProj"
+        GridPane.columnIndex="0" GridPane.rowIndex="1">
         <columns>
             <TableColumn text="%colName" >
                 <cellValueFactory>
@@ -22,13 +27,47 @@
                     <PropertyValueFactory property="version" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn />
         </columns>  
     </TableView>
-    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="0" 
-                  alignment="center" hgap="10" vgap="10">
-
-    
-    </GridPane>
+     <Label text=" = > "
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <TableView fx:id="tableTech"
+        GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <columns>
+            <TableColumn text="%colName" >
+                <cellValueFactory>
+                    <PropertyValueFactory property="name" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="%colVersion">
+                <cellValueFactory>
+                    <PropertyValueFactory property="version" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="%colLayer">
+                <cellValueFactory>
+                    <PropertyValueFactory property="layer" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="%colStatus">
+                <cellValueFactory>
+                    <PropertyValueFactory property="status" />
+                </cellValueFactory>
+                <cellFactory>
+                    <TableStateCellFactory />
+                </cellFactory>
+            </TableColumn>
+            <TableColumn text="%colGroupId">
+                <cellValueFactory>
+                    <PropertyValueFactory property="groupId" />
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="%colArtifactId">
+                <cellValueFactory>
+                    <PropertyValueFactory property="artifactId" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>  
+    </TableView>
 </GridPane>
 
