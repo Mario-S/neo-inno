@@ -1,10 +1,11 @@
 package org.inno.export;
 
+import java.util.List;
+
+
 /**
- *
  * @author spindizzy
  */
 public interface Exporter<T> {
-    
-    void export(T model);
+    String export(List<T> models);
 }
