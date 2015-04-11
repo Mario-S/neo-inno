@@ -10,7 +10,9 @@ class CypherProjectStrategy extends AbstractCypherNodeStrategy<Project>{
 
     @Override
     public String toString(Project t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder builder = new StringBuilder();
+        builder.append(extractCommon(t)).append(BR);
+        return builder.toString();
     }
     
 }

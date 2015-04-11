@@ -7,7 +7,7 @@ import org.inno.model.Project;
  *
  * @author spindizzy
  */
-class ProjectNodeExporter extends AbstractNodeExporter<Project> {
+class ProjectNodeExporter extends NodeExporter<Project> {
 
     ProjectNodeExporter(Strategy<Project> strategy) {
         super(strategy);
@@ -15,9 +15,8 @@ class ProjectNodeExporter extends AbstractNodeExporter<Project> {
 
     @Override
     public String export(Collection<Project> projects) {
-        AbstractCypherNodeStrategy strategy = (AbstractCypherNodeStrategy) getStrategy();
         StringBuilder builder = new StringBuilder();
-        projects.forEach(p -> builder.append(strategy.exportCommon(p)));
+        projects.forEach(p -> builder.append(getStrategy().toString(p)));
         return builder.toString();
     }
 

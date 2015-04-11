@@ -7,7 +7,7 @@ import org.inno.model.Technology;
  *
  * @author spindizzy
  */
-class TechnologyNodeExporter extends AbstractNodeExporter<Technology>{
+class TechnologyNodeExporter extends NodeExporter<Technology>{
 
     TechnologyNodeExporter(Strategy<Technology> strategy) {
         super(strategy);
