@@ -15,11 +15,10 @@ public class ExporterFactory {
         return new ProjectNodeExporter(strategy);
     }
     
-    public Exportable<Collection<Technology>> createTechnology() {
+    public Exportable<Collection<Technology>> createTechnologyExporter() {
         CypherTechnologyStrategy strategy = new CypherTechnologyStrategy();
         return new TechnologyNodeExporter(strategy);
     }
-    
     
     public Exportable<Map<Project, Set<Technology>>> createRelationExporter() {
         CypherRelationStrategy strategy = new CypherRelationStrategy();

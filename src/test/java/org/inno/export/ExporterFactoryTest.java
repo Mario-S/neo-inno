@@ -35,8 +35,8 @@ public class ExporterFactoryTest {
      * Test of createTechnology method, of class ExporterFactory.
      */
     @Test
-    public void testCreateTechnology() {
-        Exportable<Collection<Technology>> result = instance.createTechnology();
+    public void testCreateTechnologyExporter() {
+        Exportable<Collection<Technology>> result = instance.createTechnologyExporter();
         assertNotNull(result);
     }
 

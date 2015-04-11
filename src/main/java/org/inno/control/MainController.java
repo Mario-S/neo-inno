@@ -103,11 +103,11 @@ public class MainController extends AbstractController implements LookupListener
         Collection<? extends Project> projects = lookup.lookupAll(Project.class);
         Collection<? extends Technology> technologies = lookup.lookupAll(Technology.class);
         Collection<? extends Map<Project, Set<Technology>>> relations = lookup.lookupAll(HashMap.class);
-        ExporterFactory exporterFactory = new ExporterFactory();
+        ExporterFactory factory = new ExporterFactory();
         StringBuilder builder = new StringBuilder();
-        builder.append(exporterFactory.createProjectExporter().export((Collection<Project>) projects));
-        builder.append(exporterFactory.createTechnology().export((Collection<Technology>) technologies));
-        builder.append(exporterFactory.createRelationExporter().export((Map<Project, Set<Technology>>) relations));
+        builder.append(factory.createProjectExporter().export((Collection<Project>) projects));
+        builder.append(factory.createTechnologyExporter().export((Collection<Technology>) technologies));
+        builder.append(factory.createRelationExporter().export((Map<Project, Set<Technology>>) relations));
         return builder.toString();
     }
 }
