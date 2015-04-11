@@ -20,9 +20,17 @@ import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import java.util.Collection;
-
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import org.inno.export.ExporterFactory;
+import org.inno.model.Project;
+import org.inno.model.Technology;
+import org.openide.util.Lookup;
 
 /**
  * Controller to create the CYPHER statements.
@@ -30,6 +38,11 @@ import java.util.Collection;
  * @author spindizzy
  */
 public class MainController extends AbstractController implements LookupListener {
+
+    private final BooleanProperty disableProperty;
+
+    private final Result<org.inno.model.Node> result;
+
     @FXML
     private TextField txtFile;
 
@@ -38,10 +51,6 @@ public class MainController extends AbstractController implements LookupListener
 
     @FXML
     private Tab relationTab;
-
-    private final BooleanProperty disableProperty;
-
-    private final Result<org.inno.model.Node> result;
 
     private File exportFile;
 
@@ -67,18 +76,40 @@ public class MainController extends AbstractController implements LookupListener
 
         if (exportFile != null) {
             txtFile.setText(exportFile.getPath());
+            resultChanged(null);
         }
     }
 
     @Override
     public void resultChanged(final LookupEvent le) {
-        Result<?> res = (Result) le.getSource();
-        Collection<?> nodes = res.allInstances();
-        disableProperty.set(nodes.isEmpty());
+        if (exportFile != null) {
+            Collection<?> nodes = result.allInstances();
+            disableProperty.set(nodes.isEmpty());
+        }
     }
 
     @FXML
     void export(final ActionEvent event) {
-        // TODO implement
+        if (exportFile != null) {
+            try {
+                FileWriter writer = new FileWriter(exportFile);
+                writer.write(createExportString());
+            } catch (IOException exc) {
+                getLogger().warn(exc.getMessage(), exc);
+            }
+        }
+    }
+
+    private String createExportString() {
+        Lookup lookup = getContext().getLookup();
+        Collection<? extends Project> projects = lookup.lookupAll(Project.class);
+        Collection<? extends Technology> technologies = lookup.lookupAll(Technology.class);
+        Collection<? extends Map<Project, Set<Technology>>> relations = lookup.lookupAll(HashMap.class);
+        ExporterFactory exporterFactory = new ExporterFactory();
+        StringBuilder builder = new StringBuilder();
+        builder.append(exporterFactory.createProjectExporter().export((Collection<Project>) projects));
+        builder.append(exporterFactory.createTechnology().export((Collection<Technology>) technologies));
+        builder.append(exporterFactory.createRelationExporter().export((Map<Project, Set<Technology>>) relations));
+        return builder.toString();
     }
 }

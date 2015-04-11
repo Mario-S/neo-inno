@@ -1,6 +1,6 @@
 package org.inno.export;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import org.inno.model.Project;
@@ -27,7 +27,7 @@ public class ExporterFactoryTest {
      */
     @Test
     public void testCreateProjectExporter() {
-        Exportable<List<Project>> result = instance.createProjectExporter();
+        Exportable<Collection<Project>> result = instance.createProjectExporter();
         assertNotNull(result);
     }
 
@@ -36,7 +36,7 @@ public class ExporterFactoryTest {
      */
     @Test
     public void testCreateTechnology() {
-        Exportable<List<Technology>> result = instance.createTechnology();
+        Exportable<Collection<Technology>> result = instance.createTechnology();
         assertNotNull(result);
     }
 

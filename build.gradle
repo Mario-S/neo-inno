@@ -37,7 +37,7 @@ repositories {
 
 dependencies {
     compile "org.controlsfx:controlsfx:8.20.8", "org.javafxdata:datafx-core:2.0.2",
-    "org.netbeans.api:org-openide-util-lookup:RELEASE80"
+    "ch.qos.logback:logback-classic:1.1.2", "org.netbeans.api:org-openide-util-lookup:RELEASE80"
     testCompile "net.java.jemmy:JemmyFX:0.9.3-SNAPSHOT"
     testCompile ("org.mockito:mockito-core:1.10.19"){
         exclude group: 'org.hamcrest'

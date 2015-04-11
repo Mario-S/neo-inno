@@ -1,6 +1,6 @@
 package org.inno.export;
 
-import java.util.List;
+import java.util.Collection;
 import org.inno.model.Technology;
 
 /**
@@ -14,7 +14,7 @@ class TechnologyNodeExporter extends AbstractNodeExporter<Technology>{
     }
 
     @Override
-    public String export(List<Technology> type) {
+    public String export(Collection<Technology> type) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     

@@ -1,12 +1,12 @@
 package org.inno.export;
 
-import java.util.List;
+import java.util.Collection;
 import org.inno.model.Node;
 
 /**
  *
  * @author spindizzy
  */
-public interface NodeExportable<T extends Node> extends Exportable<List<T>>{
+public interface NodeExportable<T extends Node> extends Exportable<Collection<T>>{
     
 }
