@@ -7,7 +7,11 @@ import org.inno.model.Technology;
  *
  * @author spindizzy
  */
-public class TechnologyNodeExporter implements NodeExporter<Technology>{
+class TechnologyNodeExporter extends AbstractNodeExporter<Technology>{
+
+    TechnologyNodeExporter(Strategy<Technology> strategy) {
+        super(strategy);
+    }
 
     @Override
     public String export(List<Technology> type) {

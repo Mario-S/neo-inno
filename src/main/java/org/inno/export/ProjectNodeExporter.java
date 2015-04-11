@@ -7,11 +7,18 @@ import org.inno.model.Project;
  *
  * @author spindizzy
  */
-public class ProjectNodeExporter implements NodeExporter<Project>{
+class ProjectNodeExporter extends AbstractNodeExporter<Project> {
+
+    ProjectNodeExporter(Strategy<Project> strategy) {
+        super(strategy);
+    }
 
     @Override
-    public String export(List<Project> type) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public String export(List<Project> projects) {
+        AbstractCypherNodeStrategy strategy = (AbstractCypherNodeStrategy) getStrategy();
+        StringBuilder builder = new StringBuilder();
+        projects.forEach(p -> builder.append(strategy.exportCommon(p)));
+        return builder.toString();
     }
-    
+
 }

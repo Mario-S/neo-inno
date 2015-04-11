@@ -4,6 +4,6 @@ package org.inno.export;
 /**
  * @author spindizzy
  */
-public interface Exporter<T> {
+public interface Exportable<T> {
     String export(T type);
 }
