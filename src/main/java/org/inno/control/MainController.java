@@ -82,10 +82,8 @@ public class MainController extends AbstractController implements LookupListener
 
     @Override
     public void resultChanged(final LookupEvent le) {
-        if (exportFile != null) {
-            Collection<?> nodes = result.allInstances();
-            disableProperty.set(nodes.isEmpty());
-        }
+        Collection<?> nodes = result.allInstances();
+        disableProperty.set(exportFile == null || nodes.isEmpty());
     }
 
     @FXML
