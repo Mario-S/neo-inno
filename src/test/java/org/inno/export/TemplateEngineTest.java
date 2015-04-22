@@ -1,6 +1,5 @@
 package org.inno.export;
 
-import java.util.Optional;
 import org.inno.model.Project;
 import org.junit.Before;
 import org.junit.Test;
