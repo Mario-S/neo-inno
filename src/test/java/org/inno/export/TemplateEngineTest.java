@@ -29,7 +29,7 @@ public class TemplateEngineTest {
         String result = classUnderTest.parse(project);
         assertFalse(result.isEmpty());
         //TODO fix the test
-//        assertTrue(result.contains("test"));
+        assertTrue(result.contains("test"));
     }
     
 }
