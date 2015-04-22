@@ -9,6 +9,7 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import java.io.StringWriter;
+import org.inno.model.Technology;
 
 /**
  *
@@ -16,22 +17,31 @@ import java.io.StringWriter;
  */
 final class TemplateEngine {
     private static final String PROJECT_TEMPLATE = "neo_project.template";
+    private static final String TECHNOLOGY_TEMPLATE = "neo_tech.template";
+    private static final String RELATION_TEMPLATE = "neo_relation.template";
 
     private static final Logger LOG = LoggerFactory.getLogger(TemplateEngine.class);
 
-    private final MustacheFactory mustacheFactory = new DefaultMustacheFactory();
-    
-    private final Mustache projectMustache;
+    private final MustacheFactory mustacheFactory;
 
     TemplateEngine() {
-        projectMustache = mustacheFactory.compile(PROJECT_TEMPLATE);
+        mustacheFactory = new DefaultMustacheFactory();
     }
 
     String parse(Project project) {
+        return parse(project, PROJECT_TEMPLATE);
+    }
+    
+    String parse(Technology technology) {
+        return parse(technology, TECHNOLOGY_TEMPLATE);
+    }
+    
+    private String parse(Object object, String template){
         StringWriter writer = new StringWriter();
-        if (project != null) {
+        if (object != null) {
+            Mustache mustache = mustacheFactory.compile(template);
             try {
-                projectMustache.execute(writer, project).flush();
+                mustache.execute(writer, object).flush();
             } catch (IOException ex) {
                 LOG.warn(ex.getMessage(), ex);
             }
