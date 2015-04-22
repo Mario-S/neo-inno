@@ -2,7 +2,6 @@ package org.inno.export;
 
 import java.util.Collection;
 import org.inno.model.Node;
-import org.inno.model.Project;
 
 /**
  *
