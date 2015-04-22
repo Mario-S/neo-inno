@@ -40,7 +40,7 @@ dependencies {
     "ch.qos.logback:logback-classic:1.1.2", \
     "org.netbeans.api:org-openide-util-lookup:RELEASE80",
     "com.google.code.gson:gson:2.3.1",
-    "com.github.spullara.mustache.java:mustache.java:0.9.0"
+    "com.github.spullara.mustache.java:compiler:0.9.0"
     
     testCompile "net.java.jemmy:JemmyFX:0.9.3-SNAPSHOT"
     testCompile ("org.mockito:mockito-core:1.10.19"){
