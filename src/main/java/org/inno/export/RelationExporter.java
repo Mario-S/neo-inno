@@ -19,8 +19,10 @@ class RelationExporter implements Exportable<Map<Project,Set<Technology>>>{
     }
 
     @Override
-    public String export(Map<Project, Set<Technology>> type) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public String export(Map<Project, Set<Technology>> relations) {
+        StringBuilder builder = new StringBuilder();
+        relations.entrySet().forEach(e -> builder.append(strategy.toString(e)));
+        return builder.toString();
     }
     
 }

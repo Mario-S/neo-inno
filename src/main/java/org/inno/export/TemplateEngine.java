@@ -9,6 +9,8 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import java.io.StringWriter;
+import java.util.Map.Entry;
+import java.util.Set;
 import org.inno.model.Technology;
 
 /**
@@ -34,6 +36,10 @@ final class TemplateEngine {
     
     String parse(Technology technology) {
         return parse(technology, TECHNOLOGY_TEMPLATE);
+    }
+    
+    String parse(Entry<Project, Set<Technology>> relation){
+        return parse(relation, RELATION_TEMPLATE);
     }
     
     private String parse(Object object, String template){

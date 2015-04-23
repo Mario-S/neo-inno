@@ -8,7 +8,7 @@ import org.inno.model.Node;
  * @author spindizzy
  */
 class NodeExporter<T extends Node> implements NodeExportable<T>{
-    private Strategy<T> strategy;
+    private final Strategy<T> strategy;
 
     NodeExporter(Strategy<T> strategy) {
         this.strategy = strategy;

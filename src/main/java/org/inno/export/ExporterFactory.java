@@ -11,17 +11,17 @@ import org.inno.model.Technology;
  */
 public class ExporterFactory {
     public Exportable<Collection<Project>> createProjectExporter() {
-        CypherProjectStrategy strategy = new CypherProjectStrategy();
+        ProjectStrategy strategy = new ProjectStrategy();
         return new NodeExporter(strategy);
     }
     
     public Exportable<Collection<Technology>> createTechnologyExporter() {
-        CypherTechnologyStrategy strategy = new CypherTechnologyStrategy();
+        TechnologyStrategy strategy = new TechnologyStrategy();
         return new NodeExporter(strategy);
     }
     
     public Exportable<Map<Project, Set<Technology>>> createRelationExporter() {
-        CypherRelationStrategy strategy = new CypherRelationStrategy();
+        RelationStrategy strategy = new RelationStrategy();
         return new RelationExporter(strategy);
     }
 }

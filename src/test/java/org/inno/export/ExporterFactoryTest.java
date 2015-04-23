@@ -1,6 +1,7 @@
 package org.inno.export;
 
 import java.util.Collection;
+import static java.util.Collections.singletonList;
 import java.util.Map;
 import java.util.Set;
 import org.inno.model.Project;
@@ -29,6 +30,8 @@ public class ExporterFactoryTest {
     public void testCreateProjectExporter() {
         Exportable<Collection<Project>> result = instance.createProjectExporter();
         assertNotNull(result);
+        Collection<Project> projects = singletonList(new Project());
+        assertFalse(result.export(projects).isEmpty());
     }
 
     /**

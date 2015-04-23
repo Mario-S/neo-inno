@@ -9,11 +9,11 @@ import org.inno.model.Technology;
  *
  * @author spindizzy
  */
-class CypherRelationStrategy implements Strategy<Entry<Project, Set<Technology>>>{
+class RelationStrategy extends AbstractStrategy<Entry<Project, Set<Technology>>>{
 
     @Override
     public String toString(Entry<Project, Set<Technology>> entry) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return getTemplateEngine().parse(entry);
     }
     
 }

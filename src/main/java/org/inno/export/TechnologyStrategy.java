@@ -9,11 +9,11 @@ import org.inno.model.Technology;
  *
  * @author spindizzy
  */
-class CypherTechnologyStrategy extends AbstractCypherNodeStrategy<Technology>{
+class TechnologyStrategy extends AbstractStrategy<Technology>{
 
     @Override
     public String toString(Technology t) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        return getTemplateEngine().parse(t);
     }
     
 }
