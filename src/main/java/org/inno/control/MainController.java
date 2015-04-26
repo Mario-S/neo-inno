@@ -1,5 +1,6 @@
 package org.inno.control;
 
+import static com.google.common.collect.Lists.newArrayList;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -99,15 +100,18 @@ public class MainController extends AbstractController implements LookupListener
     }
 
     private String createExportString() {
-        Lookup lookup = getContext().getLookup();
-        Collection<? extends Project> projects = lookup.lookupAll(Project.class);
-        Collection<? extends Technology> technologies = lookup.lookupAll(Technology.class);
-        Collection<? extends Map<Project, Set<Technology>>> relations = lookup.lookupAll(HashMap.class);
-        ExporterFactory factory = new ExporterFactory();
         StringBuilder builder = new StringBuilder();
-        builder.append(factory.createProjectExporter().export((Collection<Project>) projects));
-        builder.append(factory.createTechnologyExporter().export((Collection<Technology>) technologies));
-        builder.append(factory.createRelationExporter().export((Map<Project, Set<Technology>>) relations));
+        ExporterFactory factory = new ExporterFactory();
+        builder.append(factory.createExporter(Project.class).export(newArrayList(lookup(Project.class))));
+        builder.append(factory.createExporter(Technology.class).export(newArrayList(lookup(Technology.class))));
+        builder.append(factory.createRelationExporter().export((Map<Project, Set<Technology>>) lookup(HashMap.class)));
+        
         return builder.toString();
     }
+
+    private<T> Collection<? extends T> lookup(Class<T> clazz) {
+        return getContext().getLookup().lookupAll(clazz);
+    }
+    
+   
 }

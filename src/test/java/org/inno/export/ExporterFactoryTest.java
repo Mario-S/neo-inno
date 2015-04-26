@@ -28,7 +28,7 @@ public class ExporterFactoryTest {
      */
     @Test
     public void testCreateProjectExporter() {
-        Exportable<Collection<Project>> result = instance.createProjectExporter();
+        Exportable<Collection<Project>> result = instance.createExporter(Project.class);
         assertNotNull(result);
         Collection<Project> projects = singletonList(new Project());
         assertFalse(result.export(projects).isEmpty());
@@ -39,7 +39,7 @@ public class ExporterFactoryTest {
      */
     @Test
     public void testCreateTechnologyExporter() {
-        Exportable<Collection<Technology>> result = instance.createTechnologyExporter();
+        Exportable<Collection<Technology>> result = instance.createExporter(Technology.class);
         assertNotNull(result);
     }
 
