@@ -7,4 +7,11 @@ package org.inno.model;
  */
 public class Project extends Node{
     
+    public Project(){
+    }
+    
+    public Project(String name, String version){
+        setName(name);
+        setVersion(version);
+    }
 }

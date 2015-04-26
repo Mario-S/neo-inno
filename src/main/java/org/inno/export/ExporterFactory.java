@@ -14,7 +14,7 @@ public class ExporterFactory {
     
     public <T extends Node> Exportable<Collection<T>> createNodeExporter(Class<? extends Node> node){
         AbstractStrategy strategy;
-        if(node.getClass().equals(Technology.class)){
+        if(node.equals(Technology.class)){
             strategy = new TechnologyStrategy();
         }else{
             strategy = new ProjectStrategy();

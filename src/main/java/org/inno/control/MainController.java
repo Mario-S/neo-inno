@@ -1,6 +1,5 @@
 package org.inno.control;
 
-import static com.google.common.collect.Lists.newArrayList;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -25,16 +24,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import org.inno.export.ExporterFactory;
-import org.inno.model.Project;
-import org.inno.model.Technology;
-import org.openide.util.Lookup;
 
 /**
- * Controller to create the CYPHER statements.
+ * Controller to create the CYPHER nodes.
  *
  * @author spindizzy
  */
@@ -100,18 +92,8 @@ public class MainController extends AbstractController implements LookupListener
     }
 
     private String createExportString() {
-        StringBuilder builder = new StringBuilder();
-        ExporterFactory factory = new ExporterFactory();
-        builder.append(factory.createNodeExporter(Project.class).export(newArrayList(lookup(Project.class))));
-        builder.append(factory.createNodeExporter(Technology.class).export(newArrayList(lookup(Technology.class))));
-        builder.append(factory.createRelationExporter().export((Map<Project, Set<Technology>>) lookup(HashMap.class)));
-        
-        return builder.toString();
+        ModelStringFactory factory = new ModelStringFactory(getContext().getLookup());
+        return factory.create();
     }
-
-    private<T> Collection<? extends T> lookup(Class<T> clazz) {
-        return getContext().getLookup().lookupAll(clazz);
-    }
-    
    
 }
