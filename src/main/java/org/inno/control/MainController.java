@@ -24,6 +24,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import java.util.Collection;
+import javafx.application.Platform;
 
 /**
  * Controller to create the CYPHER nodes.
@@ -96,4 +97,8 @@ public class MainController extends AbstractController implements LookupListener
         return factory.create();
     }
    
+    @FXML
+    void exit(ActionEvent event){
+        Platform.exit();
+    }
 }

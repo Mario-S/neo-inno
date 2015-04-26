@@ -4,9 +4,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+
 <BorderPane xmlns:fx="http://javafx.com/fxml"  
             fx:controller="org.inno.control.MainController"
             styleClass="root">
+    <top>
+        <MenuBar fx:id="menuBar">
+            <menus>
+                <Menu text="%file">
+                    <items>
+                        <MenuItem text="%settings"/>
+                        <SeparatorMenuItem  />
+                        <MenuItem text="%exit" onAction="#exit" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
     <center>
         <TabPane fx:id="tabPane">
             <tabs>
