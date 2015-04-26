@@ -12,7 +12,7 @@ import org.inno.model.Technology;
  */
 public class ExporterFactory {
     
-    public <T extends Node> Exportable<Collection<T>> createExporter(Class<? extends Node> node){
+    public <T extends Node> Exportable<Collection<T>> createNodeExporter(Class<? extends Node> node){
         AbstractStrategy strategy;
         if(node.getClass().equals(Technology.class)){
             strategy = new TechnologyStrategy();

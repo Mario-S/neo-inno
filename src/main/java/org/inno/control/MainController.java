@@ -102,8 +102,8 @@ public class MainController extends AbstractController implements LookupListener
     private String createExportString() {
         StringBuilder builder = new StringBuilder();
         ExporterFactory factory = new ExporterFactory();
-        builder.append(factory.createExporter(Project.class).export(newArrayList(lookup(Project.class))));
-        builder.append(factory.createExporter(Technology.class).export(newArrayList(lookup(Technology.class))));
+        builder.append(factory.createNodeExporter(Project.class).export(newArrayList(lookup(Project.class))));
+        builder.append(factory.createNodeExporter(Technology.class).export(newArrayList(lookup(Technology.class))));
         builder.append(factory.createRelationExporter().export((Map<Project, Set<Technology>>) lookup(HashMap.class)));
         
         return builder.toString();
