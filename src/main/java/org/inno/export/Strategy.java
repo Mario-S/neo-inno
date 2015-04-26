@@ -2,7 +2,7 @@ package org.inno.export;
 
 /**
  *
- * @author Mario
+ * @author spindizzy
  */
 interface Strategy<T> {
     String BR = "\n";
