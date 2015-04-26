@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?language javascript?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -8,6 +9,7 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml"  
             fx:controller="org.inno.control.MainController"
             styleClass="root">
+    <fx:script source="actionlisteners.js"/>
     <top>
         <MenuBar fx:id="menuBar">
             <menus>
@@ -15,7 +17,7 @@
                     <items>
                         <MenuItem text="%settings"/>
                         <SeparatorMenuItem  />
-                        <MenuItem text="%exit" onAction="#exit" />
+                        <MenuItem text="%exit" onAction="exit(event)" />
                     </items>
                 </Menu>
             </menus>
