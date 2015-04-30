@@ -1,1 +1,1 @@
-name: {{name}}
+create(tech:Technology{name:'{{name}}', layer:'{{layer}}', version:'{{version}}', status:'{{status}}'});

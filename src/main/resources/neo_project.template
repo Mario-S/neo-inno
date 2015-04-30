@@ -1,1 +1,1 @@
-name: {{name}}
+create(p:Project{name:'{{name}}', version:'{{version}}'});
