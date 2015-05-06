@@ -14,12 +14,12 @@ import org.inno.model.Technology;
 public class ExporterFactory {
     
     public <T extends Node> Exportable<Collection<T>> createNodeExporter(Class<? extends Node> node){
-        DefaultStrategy<T> strategy = new DefaultStrategy<>();
+        TemplateStrategy<T> strategy = new TemplateStrategy<>();
         return new NodeExporter<>(strategy);
     }
     
     public Exportable<Map<Project, Set<Technology>>> createRelationExporter() {
-        DefaultStrategy<Entry<Project, Set<Technology>>> strategy = new DefaultStrategy <>();
+        TemplateStrategy<Entry<Project, Set<Technology>>> strategy = new TemplateStrategy <>();
         return new RelationExporter(strategy);
     }
 }
