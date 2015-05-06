@@ -18,9 +18,6 @@ import org.inno.model.Technology;
  * @author spindizzy
  */
 final class TemplateEngine {
-    private static final String PROJECT_TEMPLATE = "neo_project.template";
-    private static final String TECHNOLOGY_TEMPLATE = "neo_tech.template";
-    private static final String RELATION_TEMPLATE = "neo_relation.template";
 
     private static final Logger LOG = LoggerFactory.getLogger(TemplateEngine.class);
 
@@ -31,21 +28,22 @@ final class TemplateEngine {
     }
 
     String parse(Project project) {
-        return parse(project, PROJECT_TEMPLATE);
+        return parse(project, Project.class.getSimpleName());
     }
     
     String parse(Technology technology) {
-        return parse(technology, TECHNOLOGY_TEMPLATE);
+        return parse(technology, Technology.class.getSimpleName());
     }
     
     String parse(Entry<Project, Set<Technology>> relation){
-        return parse(relation, RELATION_TEMPLATE);
+        return parse(relation, Entry.class.getSimpleName());
     }
     
-    private String parse(Object object, String template){
+    private String parse(Object object, String className){
         StringWriter writer = new StringWriter();
         if (object != null) {
-            Mustache mustache = mustacheFactory.compile(template);
+            String templateName = createTemplateName(className);
+            Mustache mustache = mustacheFactory.compile(templateName);
             try {
                 mustache.execute(writer, object).flush();
             } catch (IOException ex) {
@@ -55,4 +53,8 @@ final class TemplateEngine {
         return writer.toString();
     }
 
+    private String createTemplateName(String className){
+        return new StringBuilder().append(className).append(TEMPLATE).toString();
+    }
+    private static final String TEMPLATE = ".template";
 }
