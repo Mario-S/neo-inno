@@ -14,7 +14,9 @@ class TemplateStrategy<T> implements Strategy<T>{
 
     @Override
     public String toString(T t) {
-        return templateEngine.parse(t);
+        StringBuilder builder = new StringBuilder();
+        builder.append(templateEngine.parse(t)).append(BR);
+        return builder.toString();
     }
 
 }

@@ -81,7 +81,7 @@ public class MainController extends AbstractController implements LookupListener
         Collection<?> nodes = result.allInstances();
         boolean empty = nodes.isEmpty();
         disableRelationProperty.set(empty);
-        disableExportProperty.set(exportFile == null && empty);
+        disableExportProperty.set(exportFile == null || empty);
     }
 
     @FXML

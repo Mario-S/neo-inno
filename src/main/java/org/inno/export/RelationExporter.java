@@ -12,7 +12,7 @@ import org.inno.model.Technology;
  */
 class RelationExporter implements Exportable<Map<Project,Set<Technology>>>{
     
-    private Strategy<Entry<Project, Set<Technology>>> strategy;
+    private final Strategy<Entry<Project, Set<Technology>>> strategy;
 
     RelationExporter(Strategy<Entry<Project, Set<Technology>>> strategy) {
         this.strategy = strategy;
