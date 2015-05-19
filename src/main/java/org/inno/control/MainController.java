@@ -32,7 +32,9 @@ import java.util.Collection;
  */
 public class MainController extends AbstractController implements LookupListener {
 
-    private final BooleanProperty disableProperty;
+    private final BooleanProperty disableExportProperty;
+    
+    private final BooleanProperty disableRelationProperty;
 
     private final Result<org.inno.model.Node> result;
 
@@ -48,15 +50,16 @@ public class MainController extends AbstractController implements LookupListener
     private File exportFile;
 
     public MainController() {
-        disableProperty = new SimpleBooleanProperty(true);
+        disableExportProperty = new SimpleBooleanProperty(true);
+        disableRelationProperty = new SimpleBooleanProperty(true);
         result = getContext().getLookup().lookupResult(org.inno.model.Node.class);
         result.addLookupListener(this);
     }
 
     @Override
     void initialize(final MessageFactory factory) {
-        btnCreate.disableProperty().bind(disableProperty);
-        relationTab.disableProperty().bind(disableProperty);
+        btnCreate.disableProperty().bind(disableExportProperty);
+        relationTab.disableProperty().bind(disableRelationProperty);
     }
 
     @FXML
@@ -76,7 +79,9 @@ public class MainController extends AbstractController implements LookupListener
     @Override
     public void resultChanged(final LookupEvent le) {
         Collection<?> nodes = result.allInstances();
-        disableProperty.set(exportFile == null || nodes.isEmpty());
+        boolean empty = nodes.isEmpty();
+        disableRelationProperty.set(empty);
+        disableExportProperty.set(exportFile == null && empty);
     }
 
     @FXML
@@ -85,6 +90,7 @@ public class MainController extends AbstractController implements LookupListener
             try {
                 FileWriter writer = new FileWriter(exportFile);
                 writer.write(createExportString());
+                writer.flush();
             } catch (IOException exc) {
                 getLogger().warn(exc.getMessage(), exc);
             }
