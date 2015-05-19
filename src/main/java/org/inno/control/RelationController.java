@@ -60,6 +60,11 @@ public class RelationController extends AbstractController implements LookupList
     void initialize(MessageFactory factory) {
         tableProj.setItems(projList);
         tableTech.setItems(techList);
+        addChangeListenerToProjectTable();
+        addChangeListenerToTechnologyTable();
+    }
+    
+     private void addChangeListenerToProjectTable() {
         tableProj.getSelectionModel().getSelectedIndices().addListener((ListChangeListener.Change c) -> {
             selectedProject = empty();
             List<Integer> selected = c.getList();
@@ -74,6 +79,9 @@ public class RelationController extends AbstractController implements LookupList
                 selectedProject = of(p);
             }
         });
+    }
+
+    private void addChangeListenerToTechnologyTable() {
         tableTech.getSelectionModel().getSelectedIndices().addListener((ListChangeListener.Change c) -> {
             if(selectedProject.isPresent()){
                 Set<Technology> technologies = model.get(selectedProject.get());
@@ -82,7 +90,7 @@ public class RelationController extends AbstractController implements LookupList
             }
         });
     }
-    
+
     @FXML
     void update(ActionEvent event){
         resultChanged(null);
