@@ -63,7 +63,8 @@ public class TemplateEngineTest {
         tech.setName("technology");
         Map<Project, Set<Technology>> map = new HashMap<>();
         map.put(project, newHashSet(tech));
-        String result = classUnderTest.parse(map.entrySet().iterator().next());
-        assertTrue(result.contains("name"));
+        String expected = "MATCH (p:Project {name:'project'}), (t:Technology {name:'technology'}) CREATE (p)-[:USES]->(t);";
+        String result = classUnderTest.parse(map.entrySet().iterator().next()).trim();
+        assertEquals(expected, result);
     }
 }
