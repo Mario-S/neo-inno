@@ -5,7 +5,7 @@ import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 
 /**
- *
+ * Glue to interact with all controllers.
  * @author spindizzy
  */
 enum Context implements Lookup.Provider{
