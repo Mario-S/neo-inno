@@ -46,10 +46,12 @@ public class TemplateEngineTest {
         tech.setName("test");
         tech.setLayer("none");
         tech.setVersion("1.0.0");
+        tech.setGroupId("test");
+        tech.setArtifactId("test");
 
         String result = classUnderTest.parse(tech);
         String expected =
-            "create(tech:Technology{name:'test', layer:'none', version:'1.0.0', status:'Red'});";
+            "create(tech:Technology{name:'test', layer:'none', version:'1.0.0', status:'Red', groupId:'test', artifactId:'test');";
         assertEquals(expected, result);
     }
     
