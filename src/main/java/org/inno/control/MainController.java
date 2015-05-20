@@ -1,29 +1,20 @@
 package org.inno.control;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Collection;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
-
 import javafx.scene.Node;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-
 import javafx.stage.FileChooser;
-
 import org.openide.util.Lookup.Result;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import java.util.Collection;
 
 /**
  * Controller to create the CYPHER nodes.
@@ -48,6 +39,8 @@ public class MainController extends AbstractController implements LookupListener
     private Tab relationTab;
 
     private File exportFile;
+    
+    private DialogFactory dialogFactory;
 
     public MainController() {
         disableExportProperty = new SimpleBooleanProperty(true);
@@ -58,6 +51,7 @@ public class MainController extends AbstractController implements LookupListener
 
     @Override
     void initialize(final MessageFactory factory) {
+        dialogFactory = new DialogFactory(factory);
         btnCreate.disableProperty().bind(disableExportProperty);
         relationTab.disableProperty().bind(disableRelationProperty);
     }
@@ -91,8 +85,9 @@ public class MainController extends AbstractController implements LookupListener
                 FileWriter writer = new FileWriter(exportFile);
                 writer.write(createExportString());
                 writer.flush();
-            } catch (IOException exc) {
+            } catch (Throwable exc) {
                 getLogger().warn(exc.getMessage(), exc);
+                dialogFactory.createExceptionDialog(exc).showAndWait();
             }
         }
     }
