@@ -13,6 +13,10 @@ public final class MessageFactory {
     MessageFactory(ResourceBundle bundle) {
         this.bundle = bundle;
     }
+    
+    public String getMessage(String key){
+        return getMessage(key, new Object());
+    }
             
     public String getMessage(String key, Object ... args){
         String msg;

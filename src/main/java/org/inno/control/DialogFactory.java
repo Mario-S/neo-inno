@@ -1,23 +1,14 @@
 package org.inno.control;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 
 /**
- *
+ * Factory to produce dialogs.
  * @author spindizzy
  */
 class DialogFactory {
 
-    private static final String EXC_DIALOG_HEADER = "exc.appeared";
-    private static final String EXC_DIALOG_TITLE = "exc.dialog.title";
-    private static final String EXC_STACKTRACE = "exc.stacktrace";
+    private ExceptionDialog exceptionDialog;
 
     private final MessageFactory messageFactory;
 
@@ -25,34 +16,13 @@ class DialogFactory {
         this.messageFactory = messageFactory;
     }
 
-    private String getMessage(String key) {
-        return messageFactory.getMessage(key, new Object());
-    }
-
-    Alert createExceptionDialog(Throwable exception) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle(getMessage(EXC_DIALOG_TITLE));
-        alert.setHeaderText(getMessage(EXC_DIALOG_HEADER));
-        alert.setContentText(exception.getLocalizedMessage());
-
-        StringWriter sw = new StringWriter();
-        exception.printStackTrace(new PrintWriter(sw));
-        TextArea textArea = new TextArea(sw.toString());
-        textArea.setEditable(false);
-        textArea.setWrapText(true);
-        textArea.setMaxWidth(Double.MAX_VALUE);
-        textArea.setMaxHeight(Double.MAX_VALUE);
+    Alert create(Throwable exception) {
+        if(exceptionDialog == null){
+            exceptionDialog = new ExceptionDialog(messageFactory);
+        }
+        exceptionDialog.setThrowable(exception);
         
-        GridPane.setVgrow(textArea, Priority.ALWAYS);
-        GridPane.setHgrow(textArea, Priority.ALWAYS);
-
-        GridPane expContent = new GridPane();
-        expContent.setMaxWidth(Double.MAX_VALUE);
-        expContent.add(new Label(getMessage(EXC_STACKTRACE)), 0, 0);
-        expContent.add(textArea, 0, 1);
-
-        alert.getDialogPane().setExpandableContent(expContent);
-        return alert;
+        return exceptionDialog;
     }
 
 }

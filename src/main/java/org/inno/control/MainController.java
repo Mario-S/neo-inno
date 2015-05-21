@@ -88,7 +88,7 @@ public class MainController extends AbstractController implements LookupListener
                 writer.flush();
             } catch (IOException exc) {
                 getLogger().warn(exc.getMessage(), exc);
-                dialogFactory.createExceptionDialog(exc).showAndWait();
+                dialogFactory.create(exc).showAndWait();
             }
         }
     }
@@ -100,7 +100,7 @@ public class MainController extends AbstractController implements LookupListener
     
     @FXML
     void settings(final ActionEvent event){
-        dialogFactory.createExceptionDialog(new UnsupportedOperationException("not supported yet")).showAndWait();
+        dialogFactory.create(new UnsupportedOperationException("not supported yet")).showAndWait();
     }
    
 }
