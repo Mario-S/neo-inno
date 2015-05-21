@@ -37,22 +37,18 @@ class DialogFactory {
 
         StringWriter sw = new StringWriter();
         exception.printStackTrace(new PrintWriter(sw));
-        String exceptionText = sw.toString();
-
-        Label label = new Label(getMessage(EXC_STACKTRACE));
-
-        TextArea textArea = new TextArea(exceptionText);
+        TextArea textArea = new TextArea(sw.toString());
         textArea.setEditable(false);
         textArea.setWrapText(true);
-
         textArea.setMaxWidth(Double.MAX_VALUE);
         textArea.setMaxHeight(Double.MAX_VALUE);
+        
         GridPane.setVgrow(textArea, Priority.ALWAYS);
         GridPane.setHgrow(textArea, Priority.ALWAYS);
 
         GridPane expContent = new GridPane();
         expContent.setMaxWidth(Double.MAX_VALUE);
-        expContent.add(label, 0, 0);
+        expContent.add(new Label(getMessage(EXC_STACKTRACE)), 0, 0);
         expContent.add(textArea, 0, 1);
 
         alert.getDialogPane().setExpandableContent(expContent);
