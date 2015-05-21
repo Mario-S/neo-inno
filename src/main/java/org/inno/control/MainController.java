@@ -2,6 +2,7 @@ package org.inno.control;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Collection;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -85,7 +86,7 @@ public class MainController extends AbstractController implements LookupListener
                 FileWriter writer = new FileWriter(exportFile);
                 writer.write(createExportString());
                 writer.flush();
-            } catch (Throwable exc) {
+            } catch (IOException exc) {
                 getLogger().warn(exc.getMessage(), exc);
                 dialogFactory.createExceptionDialog(exc).showAndWait();
             }
@@ -95,6 +96,11 @@ public class MainController extends AbstractController implements LookupListener
     private String createExportString() {
         ModelStringFactory factory = new ModelStringFactory(getContext().getLookup());
         return factory.create();
+    }
+    
+    @FXML
+    void settings(final ActionEvent event){
+        dialogFactory.createExceptionDialog(new UnsupportedOperationException("not supported yet")).showAndWait();
     }
    
 }
