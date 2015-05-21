@@ -38,7 +38,9 @@ class ModelStringFactory {
         builder.append(exporter.export(technologies));
         
         Map<Project, Set<Technology>> relations = lookup.lookup(Map.class);
-        builder.append(factory.createRelationExporter().export(relations));
+        if(relations != null){
+            builder.append(factory.createRelationExporter().export(relations));
+        }
         
         return builder.toString();
     }
