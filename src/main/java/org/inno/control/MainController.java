@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collection;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -27,6 +28,8 @@ public class MainController extends AbstractController implements LookupListener
     private final BooleanProperty disableExportProperty;
 
     private final BooleanProperty disableRelationProperty;
+    
+    private final BooleanProperty busyProperty;
 
     private final Result<org.inno.model.Node> result;
 
@@ -49,6 +52,7 @@ public class MainController extends AbstractController implements LookupListener
     public MainController() {
         disableExportProperty = new SimpleBooleanProperty(true);
         disableRelationProperty = new SimpleBooleanProperty(true);
+        busyProperty = new SimpleBooleanProperty(false);
         result = getContext().getLookup().lookupResult(org.inno.model.Node.class);
         result.addLookupListener(this);
     }
@@ -58,6 +62,7 @@ public class MainController extends AbstractController implements LookupListener
         dialogFactory = new DialogFactory(factory);
         btnCreate.disableProperty().bind(disableExportProperty);
         relationTab.disableProperty().bind(disableRelationProperty);
+        glassPane.visibleProperty().bind(busyProperty);
     }
 
     @FXML
@@ -84,16 +89,23 @@ public class MainController extends AbstractController implements LookupListener
 
     @FXML
     void export(final ActionEvent event) {
+        
         if (exportFile != null) {
-            try {
-                FileWriter writer = new FileWriter(exportFile);
-                writer.write(createExportString());
-                writer.flush();
-            } catch (IOException exc) {
-                getLogger().warn(exc.getMessage(), exc);
-                dialogFactory.create(exc).showAndWait();
-            }
+            Platform.runLater(() -> {
+                busyProperty.set(true);
+                try {
+                    FileWriter writer = new FileWriter(exportFile);
+                    writer.write(createExportString());
+                    writer.flush();
+                } catch (IOException exc) {
+                    getLogger().warn(exc.getMessage(), exc);
+                    dialogFactory.create(exc).showAndWait();
+                }finally{
+                    getLogger().info("finished file export");
                 }
+                busyProperty.set(false);
+            });
+            
         }
     }
 
@@ -108,4 +120,4 @@ public class MainController extends AbstractController implements LookupListener
         dialogFactory.create(new UnsupportedOperationException("not supported yet")).showAndWait();
     }
    
-=======
+}

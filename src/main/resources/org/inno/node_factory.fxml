@@ -15,7 +15,7 @@
                 <menus>
                     <Menu text="%file">
                         <items>
-                            <MenuItem text="%settings"/>
+                            <MenuItem text="%settings" onAction="#settings" />
                             <SeparatorMenuItem  />
                             <MenuItem text="%exit" onAction="exit(event)" />
                         </items>
