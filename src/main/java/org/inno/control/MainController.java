@@ -1,20 +1,29 @@
 package org.inno.control;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.util.Collection;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
+
 import javafx.scene.Node;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+
 import javafx.stage.FileChooser;
+
 import org.openide.util.Lookup.Result;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
+
+import java.io.File;
+import java.io.FileWriter;
+
+import java.util.Collection;
+
 
 /**
  * Controller to create the CYPHER nodes.
@@ -22,9 +31,8 @@ import org.openide.util.LookupListener;
  * @author spindizzy
  */
 public class MainController extends AbstractController implements LookupListener {
-
     private final BooleanProperty disableExportProperty;
-    
+
     private final BooleanProperty disableRelationProperty;
 
     private final Result<org.inno.model.Node> result;
@@ -38,8 +46,11 @@ public class MainController extends AbstractController implements LookupListener
     @FXML
     private Tab relationTab;
 
+    @FXML
+    private Node glassPane;
+
     private File exportFile;
-    
+
     private DialogFactory dialogFactory;
 
     public MainController() {
@@ -75,12 +86,14 @@ public class MainController extends AbstractController implements LookupListener
         Collection<?> nodes = result.allInstances();
         boolean empty = nodes.isEmpty();
         disableRelationProperty.set(empty);
-        disableExportProperty.set(exportFile == null || empty);
+        disableExportProperty.set((exportFile == null) || empty);
     }
 
     @FXML
     void export(final ActionEvent event) {
         if (exportFile != null) {
+            glassPane.setVisible(true);
+
             try {
                 FileWriter writer = new FileWriter(exportFile);
                 writer.write(createExportString());
@@ -89,12 +102,14 @@ public class MainController extends AbstractController implements LookupListener
                 getLogger().warn(exc.getMessage(), exc);
                 dialogFactory.createExceptionDialog(exc).showAndWait();
             }
+
+            glassPane.setVisible(false);
         }
     }
 
     private String createExportString() {
         ModelStringFactory factory = new ModelStringFactory(getContext().getLookup());
+
         return factory.create();
     }
-   
 }

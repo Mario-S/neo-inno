@@ -5,53 +5,60 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<StackPane xmlns:fx="http://javafx.com/fxml"  
+           fx:controller="org.inno.control.MainController"
+           styleClass="root">
+    <BorderPane>
+        <fx:script source="actionlisteners.js"/>
+        <top>
+            <MenuBar fx:id="menuBar">
+                <menus>
+                    <Menu text="%file">
+                        <items>
+                            <MenuItem text="%settings"/>
+                            <SeparatorMenuItem  />
+                            <MenuItem text="%exit" onAction="exit(event)" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+        </top>
+        <center>
+            <TabPane fx:id="tabPane">
+                <tabs>
+                    <Tab text="%tech" fx:id="techTab" id="techTab">
+                        <fx:include source="tab_tech.fxml"/>
+                    </Tab>
+                    <Tab text="%proj" fx:id="projTab" id="projTab">
+                        <fx:include source="tab_proj.fxml"/>
+                    </Tab>
+                    <Tab text="%relation" fx:id="relationTab" id="relationTab">
+                        <fx:include source="tab_relation.fxml"/>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </center>
+        <bottom>
+            <FlowPane alignment="BASELINE_RIGHT"  hgap="5"
+                      style="-fx-border-color:grey;-fx-border-width: 1;-fx-border-style: solid;">
+                <padding>
+                    <Insets top="10" right="10" bottom="20" left="10"/>
+                </padding>
+                <TextField fx:id="txtFile"/>
+                <Button text="..." onAction="#handleFileSelection" />
+                <Button fx:id="btnCreate" text="Cypher Statement" onAction="#export" />
+            </FlowPane>
+        </bottom>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"  
-            fx:controller="org.inno.control.MainController"
-            styleClass="root">
-    <fx:script source="actionlisteners.js"/>
-    <top>
-        <MenuBar fx:id="menuBar">
-            <menus>
-                <Menu text="%file">
-                    <items>
-                        <MenuItem text="%settings"/>
-                        <SeparatorMenuItem  />
-                        <MenuItem text="%exit" onAction="exit(event)" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-    </top>
-    <center>
-        <TabPane fx:id="tabPane">
-            <tabs>
-                <Tab text="%tech" fx:id="techTab" id="techTab">
-                    <fx:include source="tab_tech.fxml"/>
-                </Tab>
-                <Tab text="%proj" fx:id="projTab" id="projTab">
-                    <fx:include source="tab_proj.fxml"/>
-                </Tab>
-                <Tab text="%relation" fx:id="relationTab" id="relationTab">
-                    <fx:include source="tab_relation.fxml"/>
-                </Tab>
-            </tabs>
-        </TabPane>
-    </center>
-    <bottom>
-        <FlowPane alignment="BASELINE_RIGHT"  hgap="5"
-                  style="-fx-border-color:grey;-fx-border-width: 1;-fx-border-style: solid;">
-            <padding>
-                <Insets top="10" right="10" bottom="20" left="10"/>
-            </padding>
-            <TextField fx:id="txtFile"/>
-            <Button text="..." onAction="#handleFileSelection" />
-            <Button fx:id="btnCreate" text="Cypher Statement" onAction="#export" />
-        </FlowPane>
-    </bottom>
+    </BorderPane>
+    
+    <BorderPane fx:id="glassPane" visible="false">
+        <center>
+            <Label text="%wait" />
+        </center>
+    </BorderPane>
 
     <stylesheets>
         <URL value="@main.css" />
     </stylesheets>
-</BorderPane>
-
+</StackPane>
