@@ -1,5 +1,7 @@
 package org.inno.control;
 
+import javafx.application.Platform;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -92,18 +94,20 @@ public class MainController extends AbstractController implements LookupListener
     @FXML
     void export(final ActionEvent event) {
         if (exportFile != null) {
-            glassPane.setVisible(true);
-
-            try {
-                FileWriter writer = new FileWriter(exportFile);
-                writer.write(createExportString());
-                writer.flush();
-            } catch (Throwable exc) {
-                getLogger().warn(exc.getMessage(), exc);
-                dialogFactory.createExceptionDialog(exc).showAndWait();
-            }
-
-            glassPane.setVisible(false);
+            Platform.runLater(() -> {
+                glassPane.setVisible(true);
+                
+                try {
+                    FileWriter writer = new FileWriter(exportFile);
+                    writer.write(createExportString());
+                    writer.flush();
+                } catch (Throwable exc) {
+                    getLogger().warn(exc.getMessage(), exc);
+                    dialogFactory.createExceptionDialog(exc).showAndWait();
+                }
+                
+                glassPane.setVisible(false);
+            });
         }
     }
 
