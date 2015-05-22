@@ -17,15 +17,15 @@ import org.openide.util.Lookup.Result;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 
+
 /**
  * Controller to create the CYPHER nodes.
  *
  * @author spindizzy
  */
 public class MainController extends AbstractController implements LookupListener {
-
     private final BooleanProperty disableExportProperty;
-    
+
     private final BooleanProperty disableRelationProperty;
 
     private final Result<org.inno.model.Node> result;
@@ -39,8 +39,11 @@ public class MainController extends AbstractController implements LookupListener
     @FXML
     private Tab relationTab;
 
+    @FXML
+    private Node glassPane;
+
     private File exportFile;
-    
+
     private DialogFactory dialogFactory;
 
     public MainController() {
@@ -76,7 +79,7 @@ public class MainController extends AbstractController implements LookupListener
         Collection<?> nodes = result.allInstances();
         boolean empty = nodes.isEmpty();
         disableRelationProperty.set(empty);
-        disableExportProperty.set(exportFile == null || empty);
+        disableExportProperty.set((exportFile == null) || empty);
     }
 
     @FXML
@@ -90,11 +93,13 @@ public class MainController extends AbstractController implements LookupListener
                 getLogger().warn(exc.getMessage(), exc);
                 dialogFactory.create(exc).showAndWait();
             }
+                }
         }
     }
 
     private String createExportString() {
         ModelStringFactory factory = new ModelStringFactory(getContext().getLookup());
+
         return factory.create();
     }
     
@@ -103,4 +108,4 @@ public class MainController extends AbstractController implements LookupListener
         dialogFactory.create(new UnsupportedOperationException("not supported yet")).showAndWait();
     }
    
-}
+=======
