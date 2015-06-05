@@ -9,6 +9,7 @@ import org.inno.model.Technology;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -47,6 +48,7 @@ public class ExporterFactoryTest {
      * Test of createRelationExporter method, of class ExporterFactory.
      */
     @Test
+    @Ignore
     public void testCreateRelationExporter() {
         Exportable<Map<Project, Set<Technology>>> result = instance.createRelationExporter();
         assertNotNull(result);

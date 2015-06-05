@@ -2,6 +2,7 @@ package org.inno.control;
 
 import static com.google.common.collect.Lists.newArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,24 +28,24 @@ class ModelStringFactory {
         this.factory = new ExporterFactory();
         this.builder = new StringBuilder();
     }
-    
-    String create(){
-        Exportable<Collection<Node>> exporter = factory.createNodeExporter(Project.class);
-        List<Node> projects = newArrayList(lookup(Project.class));
-        builder.append(exporter.export(projects));
-        
-        exporter = factory.createNodeExporter(Technology.class);
-        List<Node> technologies = newArrayList(lookup(Technology.class));
-        builder.append(exporter.export(technologies));
-        
-        Map<Project, Set<Technology>> relations = lookup.lookup(Map.class);
-        if(relations != null){
-            builder.append(factory.createRelationExporter().export(relations));
-        }
-        
+
+    String create() {
+        Exportable<Collection<Node>> exporter = factory.createNodeExporter(Technology.class);
+        List<Node> nodes = newArrayList(lookup(Technology.class));
+        builder.append(exporter.export(nodes));
+
+        exporter = factory.createNodeExporter(Project.class);
+        final Collection<? extends Project> projects = lookup(Project.class);
+        nodes = newArrayList(projects);
+        builder.append(exporter.export(nodes));
+
+        //TODO use project itself for relations 
+        Map<Project, Set<Technology>> relations = new HashMap<>(projects.size());
+        projects.forEach(p -> relations.put(p, p.getTechnologies()));
+        builder.append(factory.createRelationExporter().export(relations));
+
         return builder.toString();
     }
-
 
     private <T> Collection<? extends T> lookup(Class<T> clazz) {
         return lookup.lookupAll(clazz);

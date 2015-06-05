@@ -18,10 +18,19 @@ import org.junit.Test;
  */
 public class TemplateEngineTest {
     private TemplateEngine classUnderTest;
+    
+    private Technology technology;
 
     @Before
     public void setUp() {
         classUnderTest = new TemplateEngine();
+        
+        technology = new Technology();
+        technology.setName("test");
+        technology.setLayer("none");
+        technology.setVersion("1.0.0");
+        technology.setGroupId("test");
+        technology.setArtifactId("test");
     }
 
     /**
@@ -32,6 +41,8 @@ public class TemplateEngineTest {
         Project project = new Project();
         project.setName("test");
         project.setVersion("1.0.0");
+        
+        project.add(technology);
 
         String result = classUnderTest.parse(project);
         assertEquals("create(p:Project{name:'test', version:'1.0.0'});", result);
@@ -42,14 +53,7 @@ public class TemplateEngineTest {
      */
     @Test
     public void testParse_Technology() {
-        Technology tech = new Technology();
-        tech.setName("test");
-        tech.setLayer("none");
-        tech.setVersion("1.0.0");
-        tech.setGroupId("test");
-        tech.setArtifactId("test");
-
-        String result = classUnderTest.parse(tech);
+        String result = classUnderTest.parse(technology);
         String expected =
             "create(tech:Technology{name:'test', layer:'none', version:'1.0.0', status:'Red', groupId:'test', artifactId:'test');";
         assertEquals(expected, result);
@@ -59,11 +63,9 @@ public class TemplateEngineTest {
     public void testParse_Entry() {
         Project project = new Project();
         project.setName("project");
-        Technology tech = new Technology();
-        tech.setName("technology");
         Map<Project, Set<Technology>> map = new HashMap<>();
-        map.put(project, newHashSet(tech));
-        String expected = "MATCH (p:Project {name:'project'}), (t:Technology {name:'technology'}) CREATE (p)-[:USES]->(t);";
+        map.put(project, newHashSet(technology));
+        String expected = "MATCH (p:Project {name:'project'}), (t:Technology {name:'test'}) CREATE (p)-[:USES]->(t);";
         String result = classUnderTest.parse(map.entrySet().iterator().next()).trim();
         assertEquals(expected, result);
     }

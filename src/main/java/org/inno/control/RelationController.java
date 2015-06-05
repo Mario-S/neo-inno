@@ -24,7 +24,7 @@ import org.openide.util.LookupListener;
  * Controller to create a relation between {@link Project} and
  * {@link Technology}.
  *
- * @author schroeder
+ * @author spindizzy
  */
 public class RelationController extends AbstractController implements LookupListener {
 
@@ -42,8 +42,6 @@ public class RelationController extends AbstractController implements LookupList
     @FXML
     private TableView tableTech;
     
-    private final Map<Project,Set<Technology>> model;
-    
     private Optional<Project> selectedProject;
 
     public RelationController() {
@@ -53,7 +51,6 @@ public class RelationController extends AbstractController implements LookupList
         projResult = getContext().getLookup().lookupResult(Project.class);
         techResult.addLookupListener(this);
         projResult.addLookupListener(this);
-        model = new HashMap<>();
     }
 
     @Override
@@ -67,16 +64,13 @@ public class RelationController extends AbstractController implements LookupList
      private void addChangeListenerToProjectTable() {
         tableProj.getSelectionModel().getSelectedIndices().addListener((ListChangeListener.Change c) -> {
             selectedProject = empty();
-            List<Integer> selected = c.getList();
-            if(!selected.isEmpty()){
+            List<Integer> selectedIndizes = c.getList();
+            if(!selectedIndizes.isEmpty()){
                 tableTech.getSelectionModel().clearSelection();
-                Project p = projList.get(selected.iterator().next());
-                if(!model.containsKey(p)){
-                    model.put(p, new HashSet<>());
-                }else{
-                    model.get(p).forEach(t -> tableTech.getSelectionModel().select(t));
-                }
-                selectedProject = of(p);
+                Integer first = selectedIndizes.iterator().next();
+                Project project = projList.get(first);
+                project.getTechnologies().forEach(t -> tableTech.getSelectionModel().select(t));
+                selectedProject = of(project);
             }
         });
     }
@@ -84,9 +78,10 @@ public class RelationController extends AbstractController implements LookupList
     private void addChangeListenerToTechnologyTable() {
         tableTech.getSelectionModel().getSelectedIndices().addListener((ListChangeListener.Change c) -> {
             if(selectedProject.isPresent()){
-                Set<Technology> technologies = model.get(selectedProject.get());
-                List<Integer> selected = c.getList();
-                selected.forEach(index -> technologies.add(techList.get(index)));
+                Project project = selectedProject.get();
+                project.clear();
+                List<Integer> selectedIndizes = c.getList();
+                selectedIndizes.forEach(index -> project.add(techList.get(index)));
             }
         });
     }
@@ -106,8 +101,11 @@ public class RelationController extends AbstractController implements LookupList
     
     @FXML
     void updateModel(ActionEvent event){
-        getContext().getContent().remove(model);
-        getContext().getContent().add(model);
+        if(selectedProject.isPresent()){
+            Project model = selectedProject.get();
+            getContext().getContent().remove(model);
+            getContext().getContent().add(model);
+        }
     }
 
 }
