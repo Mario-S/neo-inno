@@ -60,15 +60,4 @@ public class TemplateEngineTest {
         assertEquals(expected, result);
     }
 
-    @Test
-    public void testParse_Relation() {
-        Project project = new Project();
-        project.setName("project");
-        project.add(technology);
-
-        String expected = "MATCH (p:Project {name:'project'}), (t:Technology {name:'test'}) CREATE (p)-[:USES]->(t);";
-
-        String result = classUnderTest.parse(project, "Relation").trim();
-        assertEquals(expected, result);
-    }
 }

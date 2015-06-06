@@ -1,3 +1,0 @@
-{{#technologies}}
-MATCH (p:Project {name:'{{../name}}'}), (t:Technology {name:'{{name}}'}) CREATE (p)-[:USES]->(t);
-{{/technologies}}
