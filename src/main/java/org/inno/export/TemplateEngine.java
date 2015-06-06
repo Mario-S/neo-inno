@@ -1,13 +1,12 @@
 package org.inno.export;
 
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
+import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
+import com.github.jknack.handlebars.io.TemplateLoader;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.github.mustachejava.DefaultMustacheFactory;
-import com.github.mustachejava.Mustache;
-import com.github.mustachejava.MustacheFactory;
-import java.io.StringWriter;
 
 /**
  *
@@ -19,10 +18,13 @@ final class TemplateEngine<T> {
 
     private static final Logger LOG = LoggerFactory.getLogger(TemplateEngine.class);
 
-    private final MustacheFactory mustacheFactory;
+    private final Handlebars handlebars;
 
     TemplateEngine() {
-        mustacheFactory = new DefaultMustacheFactory();
+        TemplateLoader loader = new ClassPathTemplateLoader();
+//        loader.setPrefix("/templates");
+        loader.setSuffix(TEMPLATE);
+        handlebars = new Handlebars(loader);
     }
 
     String parse(T t) {
@@ -31,20 +33,20 @@ final class TemplateEngine<T> {
     }
 
     String parse(T t, String templateName) {
-        StringWriter writer = new StringWriter();
-        Mustache mustache = mustacheFactory.compile(templateName);
+        StringBuilder builder = new StringBuilder();
+
         try {
-            mustache.execute(writer, t).flush();
+            Template template = handlebars.compile(templateName);
+            builder.append(template.apply(t));
         } catch (IOException ex) {
             LOG.warn(ex.getMessage(), ex);
         }
-        return writer.toString();
+        return builder.toString();
     }
 
     private String createTemplateName(T t) {
         Class<?> clazz = t.getClass();
-        String className = clazz.getName();
-        return new StringBuilder().append(className).append(TEMPLATE).toString();
+        return clazz.getName();
     }
 
 }

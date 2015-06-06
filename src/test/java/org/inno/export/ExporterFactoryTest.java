@@ -29,7 +29,7 @@ public class ExporterFactoryTest {
      */
     @Test
     public void testCreateProjectExporter() {
-        Exportable<Collection<Project>> result = instance.createNodeExporter(Project.class);
+        Exportable<Collection<Project>> result = instance.createNodeExporter();
         assertNotNull(result);
         Collection<Project> projects = singletonList(new Project());
         assertFalse(result.export(projects).isEmpty());
@@ -40,17 +40,7 @@ public class ExporterFactoryTest {
      */
     @Test
     public void testCreateTechnologyExporter() {
-        Exportable<Collection<Technology>> result = instance.createNodeExporter(Technology.class);
-        assertNotNull(result);
-    }
-
-    /**
-     * Test of createRelationExporter method, of class ExporterFactory.
-     */
-    @Test
-    @Ignore
-    public void testCreateRelationExporter() {
-        Exportable<Map<Project, Set<Technology>>> result = instance.createRelationExporter();
+        Exportable<Collection<Technology>> result = instance.createNodeExporter();
         assertNotNull(result);
     }
     

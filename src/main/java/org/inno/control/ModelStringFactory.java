@@ -30,28 +30,15 @@ class ModelStringFactory {
     }
 
     String create() {
-        builder.append(export(Technology.class));
-
-        final Collection<? extends Project> projects = lookup(Project.class);
-        builder.append(createExporter(Project.class).export(newArrayList(projects)));
-
-        //TODO use project itself for relations 
-        Map<Project, Set<Technology>> relations = new HashMap<>(projects.size());
-        projects.forEach(p -> relations.put(p, p.getTechnologies()));
-        builder.append(factory.createRelationExporter().export(relations));
-
+        builder.append(export(Technology.class)).append(export(Project.class));
         return builder.toString();
     }
     
     private String export(Class<? extends Node> clazz) {
         List<Node> nodes = newArrayList(lookup(clazz));
-        return createExporter(clazz).export(nodes);
+        return factory.createNodeExporter().export(nodes);
     }
     
-    private Exportable<Collection<Node>> createExporter(Class<? extends Node> clazz){
-        return factory.createNodeExporter(clazz);
-    }
-
     private <T> Collection<? extends T> lookup(Class<T> clazz) {
         return lookup.lookupAll(clazz);
     }

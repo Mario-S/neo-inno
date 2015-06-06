@@ -12,19 +12,19 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * @author spindizzy
  */
 public class TemplateEngineTest {
+
     private TemplateEngine classUnderTest;
-    
+
     private Technology technology;
 
     @Before
     public void setUp() {
         classUnderTest = new TemplateEngine();
-        
+
         technology = new Technology();
         technology.setName("test");
         technology.setLayer("none");
@@ -41,11 +41,12 @@ public class TemplateEngineTest {
         Project project = new Project();
         project.setName("test");
         project.setVersion("1.0.0");
-        
+
         project.add(technology);
 
         String result = classUnderTest.parse(project);
-        assertEquals("create(p:Project{name:'test', version:'1.0.0'});", result);
+        assertTrue(result.contains("create(p:Project{name:'test', version:'1.0.0'});"));
+        assertTrue(result.contains("MATCH (p:Project {name:'test'}), (t:Technology {name:'test'}) CREATE (p)-[:USES]->(t);"));
     }
 
     /**
@@ -54,19 +55,20 @@ public class TemplateEngineTest {
     @Test
     public void testParse_Technology() {
         String result = classUnderTest.parse(technology);
-        String expected =
-            "create(tech:Technology{name:'test', layer:'none', version:'1.0.0', status:'Red', groupId:'test', artifactId:'test');";
+        String expected
+                = "create(tech:Technology{name:'test', layer:'none', version:'1.0.0', status:'Red', groupId:'test', artifactId:'test');";
         assertEquals(expected, result);
     }
-    
+
     @Test
-    public void testParse_Entry() {
+    public void testParse_Relation() {
         Project project = new Project();
         project.setName("project");
-        Map<Project, Set<Technology>> map = new HashMap<>();
-        map.put(project, newHashSet(technology));
+        project.add(technology);
+
         String expected = "MATCH (p:Project {name:'project'}), (t:Technology {name:'test'}) CREATE (p)-[:USES]->(t);";
-        String result = classUnderTest.parse(map.entrySet().iterator().next()).trim();
+
+        String result = classUnderTest.parse(project, "Relation").trim();
         assertEquals(expected, result);
     }
 }

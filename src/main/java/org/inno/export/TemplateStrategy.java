@@ -6,9 +6,9 @@ package org.inno.export;
  */
 class TemplateStrategy<T> implements Strategy<T>{
     
-    private final TemplateEngine templateEngine;
+    final TemplateEngine templateEngine;
 
-    public TemplateStrategy() {
+    TemplateStrategy() {
         this.templateEngine = new TemplateEngine();
     }
 

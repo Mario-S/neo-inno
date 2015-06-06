@@ -2,7 +2,6 @@ package org.inno.model;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 /**
  * Model class for a project.
