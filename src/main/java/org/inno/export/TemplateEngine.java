@@ -14,7 +14,7 @@ import java.io.StringWriter;
  * @author spindizzy
  */
 final class TemplateEngine<T> {
-    
+
     private static final String TEMPLATE = ".template";
 
     private static final Logger LOG = LoggerFactory.getLogger(TemplateEngine.class);
@@ -26,27 +26,25 @@ final class TemplateEngine<T> {
     }
 
     String parse(T t) {
-        Class<?> clazz = t.getClass();
-        String name = clazz.getName();
-        return parse(t, name);
+        String templateName = createTemplateName(t);
+        return parse(t, templateName);
     }
 
-    private String parse(Object object, String className) {
+    String parse(T t, String templateName) {
         StringWriter writer = new StringWriter();
-        if (object != null) {
-            String templateName = createTemplateName(className);
-            Mustache mustache = mustacheFactory.compile(templateName);
-            try {
-                mustache.execute(writer, object).flush();
-            } catch (IOException ex) {
-                LOG.warn(ex.getMessage(), ex);
-            }
+        Mustache mustache = mustacheFactory.compile(templateName);
+        try {
+            mustache.execute(writer, t).flush();
+        } catch (IOException ex) {
+            LOG.warn(ex.getMessage(), ex);
         }
         return writer.toString();
     }
 
-    private String createTemplateName(String className) {
+    private String createTemplateName(T t) {
+        Class<?> clazz = t.getClass();
+        String className = clazz.getName();
         return new StringBuilder().append(className).append(TEMPLATE).toString();
     }
-    
+
 }
