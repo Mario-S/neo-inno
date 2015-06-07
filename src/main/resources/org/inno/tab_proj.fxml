@@ -45,10 +45,14 @@
         <TextField fx:id="txtVersion"
             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
             
-        <Button fx:id="btnAddTech"
+        <Button fx:id="btnAddProj"
             GridPane.columnIndex="0" GridPane.rowIndex="2"
                     text=" + " 
                     onAction="#addToTable" />
+        <Button fx:id="btnRemoveProj"
+            GridPane.columnIndex="0" GridPane.rowIndex="3"
+                    text=" - " 
+                    onAction="#removeFromTable" />
     
     </GridPane>
 </GridPane>

@@ -1,5 +1,7 @@
 package org.inno.control;
 
+import static com.google.common.collect.Lists.newArrayList;
+import java.util.List;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -32,14 +34,17 @@ abstract class AbstractNodeController<T extends Node> extends AbstractController
     private final ValidationSupport validationSupport;
 
     private final ObservableList<T> modelList;
+    
+    private final List<Integer> selectedIndizes;
 
     AbstractNodeController(ValidationSupport validationSupport) {
         this.validationSupport = validationSupport;
         modelList = observableArrayList();
         modelList.addListener(new ModelListChangeListener());
+        selectedIndizes = newArrayList();
     }
 
-    public AbstractNodeController() {
+    AbstractNodeController() {
         this(new ValidationSupport());
     }
 
@@ -48,7 +53,15 @@ abstract class AbstractNodeController<T extends Node> extends AbstractController
         initialize(validationSupport, factory);
 
         bind();
+        initializeTable();
+    }
+
+    private void initializeTable() {
         table.setItems(getModelList());
+        table.getSelectionModel().getSelectedIndices().addListener((ListChangeListener.Change c) -> {
+            selectedIndizes.clear();
+            selectedIndizes.addAll(c.getList());
+        });
     }
 
     protected void initialize(ValidationSupport validationSupport, MessageFactory factory) {
@@ -71,7 +84,7 @@ abstract class AbstractNodeController<T extends Node> extends AbstractController
     }
 
     /**
-     * Action handling for the button to add a new row to the table.
+     * Action handling to add a new row to the table.
      *
      * @param event
      */
@@ -86,6 +99,14 @@ abstract class AbstractNodeController<T extends Node> extends AbstractController
                 bind();
             }
         }
+    }
+
+    /**
+     * Action handling to remove a row from the table.
+     */
+    @FXML
+    protected void removeFromTable(ActionEvent event) {
+        modelList.removeIf(m -> selectedIndizes.contains(modelList.indexOf(m)));
     }
 
     /**
@@ -125,6 +146,8 @@ abstract class AbstractNodeController<T extends Node> extends AbstractController
             change.next();
             if (change.wasAdded()) {
                 change.getAddedSubList().forEach(n -> content.add(n));
+            }else if(change.wasRemoved()){
+                change.getRemoved().forEach(n -> content.remove(n));
             }
         }
 

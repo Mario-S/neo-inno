@@ -103,6 +103,10 @@
         <Button GridPane.columnIndex="0" GridPane.rowIndex="6" 
                 text=" + " 
                 onAction="#addToTable"/>
+        
+        <Button GridPane.columnIndex="0" GridPane.rowIndex="7" 
+                text=" - " 
+                onAction="#removeFromTable"/>
 
     </GridPane>
 </GridPane>
