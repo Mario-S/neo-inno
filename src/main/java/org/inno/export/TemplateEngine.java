@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * @author spindizzy
  */
 final class TemplateEngine<T> {
-
+    private static final String FOLDER = "/templates";
     private static final String TEMPLATE = ".template";
 
     private static final Logger LOG = LoggerFactory.getLogger(TemplateEngine.class);
@@ -22,7 +22,7 @@ final class TemplateEngine<T> {
 
     TemplateEngine() {
         TemplateLoader loader = new ClassPathTemplateLoader();
-//        loader.setPrefix("/templates");
+        loader.setPrefix(FOLDER);
         loader.setSuffix(TEMPLATE);
         handlebars = new Handlebars(loader);
     }

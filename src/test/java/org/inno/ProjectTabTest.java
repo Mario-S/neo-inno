@@ -41,7 +41,7 @@ public class ProjectTabTest extends FxRobot{
         write("Test");
         clickOn("#txtVersion");
         write("Test");
-        clickOn("#btnAddTech");
+        clickOn("#btnAddProj");
 //        verifyThat("#colName", hasText("Test"));
     }
 
