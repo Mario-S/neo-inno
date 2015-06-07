@@ -3,7 +3,7 @@ root {
 }
 
 .root {
-     -fx-background-color: #ffffff;
+    -fx-background-color: #ffffff;
 }
 
 .label {
@@ -13,28 +13,53 @@ root {
 }
 
 #actiontarget {
-  -fx-fill: FIREBRICK;
-  -fx-font-weight: bold;
-  -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );  
+    -fx-fill: FIREBRICK;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );  
 }
 
+.iphone-toolbar {
+    -fx-background-color: linear-gradient(#98a8bd 0%, #8195af 25%, #6d86a4 100%);
+}
 .button {
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-background-radius: 5,5,4;
+    -fx-padding: 7 30 7 30;
+    -fx-text-fill: #242d35;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12px;
     -fx-text-fill: white;
-    -fx-font-family: "Arial Narrow";
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+    -fx-background-color: 
+        #a9b8cb,
+        linear-gradient(#333b45 0%, #3f587a 20%, #3a5377 100%),
+        linear-gradient(#798fa8 0%, #879fbe 5%, #5b7aa5 50%, #4b6d9d 51%, #4d6f9e 100%);
 }
 
-#menuBar {
-    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+.button Text {
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , -1 );
 }
 
 #glassPane {
     -fx-cursor: wait;
     -fx-background-color: rgba(204,255,153,0.3);
+}
+
+.ui-icon-plus {
+    -fx-background-image: url("images/plus.png");
+    -fx-padding: 8 8 8 20;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;   
+}
+
+.ui-icon-trash {
+    -fx-background-image: url("images/trash.png");
+    -fx-padding: 8 8 8 20;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left; 
 }

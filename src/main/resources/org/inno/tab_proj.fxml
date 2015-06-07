@@ -10,7 +10,7 @@
         <Insets top="10" right="10" bottom="20" left="10"/>
     </padding>
     <TableView fx:id="table"
-        GridPane.columnIndex="0" GridPane.rowIndex="0">
+               GridPane.columnIndex="0" GridPane.rowIndex="0">
         <columns>
             <TableColumn text="%colName" fx:id="colName">
                 <cellValueFactory>
@@ -26,7 +26,7 @@
         </columns>  
     </TableView>
     <GridPane GridPane.columnIndex="1" GridPane.rowIndex="0" 
-                  alignment="center" hgap="10" vgap="10">
+              alignment="center" hgap="10" vgap="10">
         <padding>
             <Insets top="20" right="10" bottom="20" left="10"/>
         </padding>
@@ -36,23 +36,25 @@
         </columnConstraints>
  
         <Label text="%lblName"
-                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
         <TextField fx:id="txtName"
-            GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                   GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     
         <Label text="%lblVersion"
-                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
         <TextField fx:id="txtVersion"
-            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
             
         <Button fx:id="btnAddProj"
-            GridPane.columnIndex="0" GridPane.rowIndex="2"
-                    text=" + " 
-                    onAction="#addToTable" />
+                GridPane.columnIndex="0" GridPane.rowIndex="2"
+                text="%add"
+                onAction="#addToTable"
+                minWidth="100" styleClass="ui-icon-plus"/>
         <Button fx:id="btnRemoveProj"
-            GridPane.columnIndex="0" GridPane.rowIndex="3"
-                    text=" - " 
-                    onAction="#removeFromTable" />
+                GridPane.columnIndex="0" GridPane.rowIndex="3"
+                text="%remove" 
+                onAction="#removeFromTable" 
+                minWidth="100" styleClass="ui-icon-trash"/>
     
     </GridPane>
 </GridPane>

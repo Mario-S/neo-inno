@@ -101,12 +101,13 @@
             GridPane.columnIndex="1" GridPane.rowIndex="5"/>
             
         <Button GridPane.columnIndex="0" GridPane.rowIndex="6" 
-                text=" + " 
-                onAction="#addToTable"/>
-        
+                text="%add" 
+                onAction="#addToTable" 
+                minWidth="100"  styleClass="ui-icon-plus"/>
         <Button GridPane.columnIndex="0" GridPane.rowIndex="7" 
-                text=" - " 
-                onAction="#removeFromTable"/>
+                text="%remove"
+                onAction="#removeFromTable" 
+                minWidth="100"  styleClass="ui-icon-trash"/>
 
     </GridPane>
 </GridPane>

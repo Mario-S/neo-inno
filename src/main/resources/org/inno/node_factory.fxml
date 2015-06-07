@@ -11,7 +11,7 @@
     <BorderPane>
         <fx:script source="actionlisteners.js"/>
         <top>
-            <MenuBar fx:id="menuBar">
+            <MenuBar fx:id="menuBar" styleClass="iphone-toolbar">
                 <menus>
                     <Menu text="%file">
                         <items>
@@ -26,13 +26,13 @@
         <center>
             <TabPane fx:id="tabPane">
                 <tabs>
-                    <Tab text="%tech" fx:id="techTab" id="techTab">
+                    <Tab text="%tech" fx:id="techTab" id="techTab"  closable="false" >
                         <fx:include source="tab_tech.fxml"/>
                     </Tab>
-                    <Tab text="%proj" fx:id="projTab" id="projTab">
+                    <Tab text="%proj" fx:id="projTab" id="projTab" closable="false" >
                         <fx:include source="tab_proj.fxml"/>
                     </Tab>
-                    <Tab text="%relation" fx:id="relationTab" id="relationTab">
+                    <Tab text="%relation" fx:id="relationTab" id="relationTab" closable="false" >
                         <fx:include source="tab_relation.fxml"/>
                     </Tab>
                 </tabs>
