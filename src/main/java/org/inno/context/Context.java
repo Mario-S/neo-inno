@@ -1,4 +1,4 @@
-package org.inno.control;
+package org.inno.context;
 
 import org.openide.util.Lookup;
 import org.openide.util.lookup.AbstractLookup;
@@ -8,7 +8,7 @@ import org.openide.util.lookup.InstanceContent;
  * Glue to interact with all controllers.
  * @author spindizzy
  */
-enum Context implements Lookup.Provider{
+public enum Context implements Lookup.Provider{
     Instance;
     
     private final Lookup lookup;
