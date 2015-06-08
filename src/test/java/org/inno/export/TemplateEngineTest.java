@@ -1,9 +1,5 @@
 package org.inno.export;
 
-import static com.google.common.collect.Sets.newHashSet;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 import org.inno.model.Project;
 import org.inno.model.Technology;
 
@@ -12,11 +8,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+
 /**
  * @author spindizzy
  */
 public class TemplateEngineTest {
-
     private TemplateEngine classUnderTest;
 
     private Technology technology;
@@ -45,8 +41,10 @@ public class TemplateEngineTest {
         project.add(technology);
 
         String result = classUnderTest.parse(project);
-        assertTrue(result.contains("create(p:Project{name:'test', version:'1.0.0'});"));
-        assertTrue(result.contains("MATCH (p:Project {name:'test'}), (t:Technology {name:'test'}) CREATE (p)-[:USES]->(t);"));
+        assertTrue(result.contains("create(test:Project{name:'test', version:'1.0.0'}) "));
+        assertTrue(
+            result.contains(
+                "MATCH (p:Project {name:'test'}), (t:Technology {name:'test'}) CREATE (p)-[:USES]->(t) "));
     }
 
     /**
@@ -55,9 +53,8 @@ public class TemplateEngineTest {
     @Test
     public void testParse_Technology() {
         String result = classUnderTest.parse(technology);
-        String expected
-                = "create(tech:Technology{name:'test', layer:'none', version:'1.0.0', status:'Red', groupId:'test', artifactId:'test');";
+        String expected =
+            "create(test:Technology{name:'test', layer:'none', version:'1.0.0', status:'Red', groupId:'test', artifactId:'test'}) ";
         assertEquals(expected, result);
     }
-
 }

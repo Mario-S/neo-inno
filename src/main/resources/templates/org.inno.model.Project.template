@@ -1,4 +1,4 @@
 create({{name}}:Project{name:'{{name}}', version:'{{version}}'}) 
 {{#technologies}}
-MATCH ({{../name}}:Project {name:'{{../name}}'}), ({{name}}:Technology {name:'{{name}}'}) CREATE (p)-[:USES]->(t) 
+MATCH (p:Project {name:'{{../name}}'}), (t:Technology {name:'{{name}}'}) CREATE (p)-[:USES]->(t) 
 {{/technologies}}
