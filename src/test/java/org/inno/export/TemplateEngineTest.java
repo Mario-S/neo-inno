@@ -1,6 +1,7 @@
 package org.inno.export;
 
 import org.inno.model.Project;
+import org.inno.model.State;
 import org.inno.model.Technology;
 
 import static org.junit.Assert.*;
@@ -27,6 +28,7 @@ public class TemplateEngineTest {
         technology.setVersion("1.0.0");
         technology.setGroupId("test");
         technology.setArtifactId("test");
+        technology.setStatus(State.Red);
     }
 
     /**
