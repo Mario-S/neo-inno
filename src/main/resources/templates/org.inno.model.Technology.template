@@ -1,1 +1,1 @@
-create(tech:Technology{name:'{{name}}', layer:'{{layer}}', version:'{{version}}', status:'{{status}}', groupId:'{{groupId}}', artifactId:'{{artifactId}}');
+create({{name}}:Technology{name:'{{name}}', layer:'{{layer}}', version:'{{version}}', status:'{{status}}', groupId:'{{groupId}}', artifactId:'{{artifactId}}'}) 
