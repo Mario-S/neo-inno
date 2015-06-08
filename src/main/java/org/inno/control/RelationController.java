@@ -45,12 +45,12 @@ public class RelationController extends AbstractController implements LookupList
         projList = observableArrayList();
         techResult = getContext().getLookup().lookupResult(Technology.class);
         projResult = getContext().getLookup().lookupResult(Project.class);
-        techResult.addLookupListener(this);
-        projResult.addLookupListener(this);
     }
 
     @Override
     void initialize(MessageFactory factory) {
+        techResult.addLookupListener(this);
+        projResult.addLookupListener(this);
         tableProj.setItems(projList);
         tableTech.setItems(techList);
         addChangeListenerToProjectTable();
@@ -93,15 +93,6 @@ public class RelationController extends AbstractController implements LookupList
         techList.addAll(techResult.allInstances());
         projList.clear();
         projList.addAll(projResult.allInstances());
-    }
-    
-    @FXML
-    void updateModel(ActionEvent event){
-        if(selectedProject.isPresent()){
-            Project model = selectedProject.get();
-            getContext().getContent().remove(model);
-            getContext().getContent().add(model);
-        }
     }
 
 }

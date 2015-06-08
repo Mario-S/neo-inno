@@ -71,15 +71,7 @@
             </TableColumn>
         </columns>  
     </TableView>
-    <HBox spacing="20" alignment="BOTTOM_RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="1">
-        <padding>
-            <Insets bottom="10" left="30"/>
-        </padding>
-        <Button 
-            text="%ok" 
-            onAction="#updateModel">
-        </Button>
-    </HBox>
+    
     <fx:script>
         tableTech.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
     </fx:script>
