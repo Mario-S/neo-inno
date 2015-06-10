@@ -43,10 +43,10 @@ public class TemplateEngineTest {
         project.add(technology);
 
         String result = classUnderTest.parse(project);
-        assertTrue(result.contains("create(test:Project{name:'test', version:'1.0.0'}) "));
         assertTrue(
             result.contains(
-                "MATCH (p:Project {name:'test'}), (t:Technology {name:'test'}) CREATE (p)-[:USES]->(t) "));
+                "WITH test, test MATCH (p:Project {name:'test'}) CREATE (test)-[:USES]->(test) "));
+        assertTrue(result.startsWith("create(test:Project{name:'test', version:'1.0.0'}) "));
     }
 
     /**
