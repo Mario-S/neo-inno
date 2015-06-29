@@ -1,8 +1,9 @@
 /*
  * Created by Schuetze Consulting Informationssysteme AG, Berlin.
  */
-package org.inno.dao;
 
+
+import org.inno.AppConfig;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;

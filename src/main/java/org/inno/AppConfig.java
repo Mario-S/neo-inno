@@ -1,4 +1,4 @@
-package org.inno.dao;
+package org.inno;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
