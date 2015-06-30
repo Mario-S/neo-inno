@@ -18,6 +18,9 @@ import java.util.ResourceBundle;
  * @author spindizzy
  */
 public class Gui extends Application {
+    
+    private final SpringFxmlLoader loader = new SpringFxmlLoader();
+    
     @Override
     public void start(final Stage stage) throws IOException {
         Parent root = getParent();
@@ -29,7 +32,8 @@ public class Gui extends Application {
     }
 
     Parent getParent() throws IOException {
-        return FXMLLoader.load(getClass().getResource("node_factory.fxml"),
+        
+        return loader.load(getClass().getResource("node_factory.fxml"), 
                 ResourceBundle.getBundle("org.inno.bundles.bundle"));
     }
 }
