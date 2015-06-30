@@ -1,9 +1,11 @@
+package org.inno.context;
+
 /*
  * Created by Schuetze Consulting Informationssysteme AG, Berlin.
  */
 
 
-import org.inno.AppConfig;
+import org.inno.context.AppConfig;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
