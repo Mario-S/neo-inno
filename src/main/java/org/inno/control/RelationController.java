@@ -12,9 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import org.inno.model.Project;
 import org.inno.model.Technology;
-import org.openide.util.Lookup.Result;
-import org.openide.util.LookupEvent;
-import org.openide.util.LookupListener;
 
 /**
  * Controller to create a relation between {@link Project} and
@@ -22,15 +19,15 @@ import org.openide.util.LookupListener;
  *
  * @author spindizzy
  */
-public class RelationController extends AbstractController implements LookupListener {
+public class RelationController extends AbstractController {
 
     private final ObservableList<Technology> techList;
 
     private final ObservableList<Project> projList;
 
-    private final Result<Technology> techResult;
-
-    private final Result<Project> projResult;
+    private ListLookupListener<Technology> techListner;
+    
+    private ListLookupListener<Project> projListner;
 
     @FXML
     private TableView tableProj;
@@ -43,10 +40,8 @@ public class RelationController extends AbstractController implements LookupList
     public RelationController() {
         techList = observableArrayList();
         projList = observableArrayList();
-        techResult = getContext().getLookup().lookupResult(Technology.class);
-        projResult = getContext().getLookup().lookupResult(Project.class);
-        techResult.addLookupListener(this);
-        projResult.addLookupListener(this);
+        techListner = new ListLookupListener<>(techList, getContext().getLookup().lookupResult(Technology.class));
+        projListner = new ListLookupListener<>(projList, getContext().getLookup().lookupResult(Project.class));
     }
 
     @Override
@@ -84,24 +79,7 @@ public class RelationController extends AbstractController implements LookupList
 
     @FXML
     void update(ActionEvent event){
-        resultChanged(null);
     }
 
-    @Override
-    public void resultChanged(LookupEvent le) {
-        techList.clear();
-        techList.addAll(techResult.allInstances());
-        projList.clear();
-        projList.addAll(projResult.allInstances());
-    }
-    
-    @FXML
-    void updateModel(ActionEvent event){
-        if(selectedProject.isPresent()){
-            Project model = selectedProject.get();
-            getContext().getContent().remove(model);
-            getContext().getContent().add(model);
-        }
-    }
 
 }
