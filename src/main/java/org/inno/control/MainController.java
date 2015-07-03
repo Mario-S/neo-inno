@@ -14,24 +14,27 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javax.annotation.PostConstruct;
 import org.openide.util.Lookup.Result;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
-
+import org.springframework.stereotype.Component;
 
 /**
  * Controller to create the CYPHER nodes.
  *
  * @author spindizzy
  */
+@Component
 public class MainController extends AbstractController implements LookupListener {
+
     private final BooleanProperty disableExportProperty;
 
     private final BooleanProperty disableRelationProperty;
-    
+
     private final BooleanProperty busyProperty;
 
-    private final Result<org.inno.model.Node> result;
+    private Result<org.inno.model.Node> result;
 
     @FXML
     private TextField txtFile;
@@ -53,6 +56,10 @@ public class MainController extends AbstractController implements LookupListener
         disableExportProperty = new SimpleBooleanProperty(true);
         disableRelationProperty = new SimpleBooleanProperty(true);
         busyProperty = new SimpleBooleanProperty(false);
+    }
+
+    @Override
+    protected void afterPropertiesSet() {
         result = getContext().getLookup().lookupResult(org.inno.model.Node.class);
         result.addLookupListener(this);
     }
@@ -89,7 +96,7 @@ public class MainController extends AbstractController implements LookupListener
 
     @FXML
     void export(final ActionEvent event) {
-        
+
         if (exportFile != null) {
             Platform.runLater(() -> {
                 busyProperty.set(true);
@@ -100,12 +107,12 @@ public class MainController extends AbstractController implements LookupListener
                 } catch (IOException exc) {
                     getLogger().warn(exc.getMessage(), exc);
                     dialogFactory.create(exc).showAndWait();
-                }finally{
+                } finally {
                     getLogger().info("finished file export");
                 }
                 busyProperty.set(false);
             });
-            
+
         }
     }
 
@@ -114,10 +121,10 @@ public class MainController extends AbstractController implements LookupListener
 
         return factory.create();
     }
-    
+
     @FXML
-    void settings(final ActionEvent event){
+    void settings(final ActionEvent event) {
         dialogFactory.create(new UnsupportedOperationException("not supported yet")).showAndWait();
     }
-   
+
 }

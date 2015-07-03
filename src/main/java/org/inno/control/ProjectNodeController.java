@@ -2,12 +2,14 @@ package org.inno.control;
 
 import org.controlsfx.validation.ValidationSupport;
 import org.inno.model.Project;
+import org.springframework.stereotype.Component;
 
 /**
  * Controller for the 'Projekt' Tab.
  *
  * @author spindizzy
  */
+@Component
 public class ProjectNodeController extends AbstractNodeController<Project> {
 
     private Project model;

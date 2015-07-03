@@ -10,8 +10,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import javax.annotation.PostConstruct;
 import org.inno.model.Project;
 import org.inno.model.Technology;
+import org.springframework.stereotype.Component;
 
 /**
  * Controller to create a relation between {@link Project} and
@@ -19,6 +21,7 @@ import org.inno.model.Technology;
  *
  * @author spindizzy
  */
+@Component
 public class RelationController extends AbstractController {
 
     private final ObservableList<Technology> techList;
@@ -26,7 +29,7 @@ public class RelationController extends AbstractController {
     private final ObservableList<Project> projList;
 
     private ListLookupListener<Technology> techListner;
-    
+
     private ListLookupListener<Project> projListner;
 
     @FXML
@@ -34,12 +37,16 @@ public class RelationController extends AbstractController {
 
     @FXML
     private TableView tableTech;
-    
+
     private Optional<Project> selectedProject;
 
     public RelationController() {
         techList = observableArrayList();
         projList = observableArrayList();
+    }
+
+    @Override
+    protected void afterPropertiesSet() {
         techListner = new ListLookupListener<>(techList, getContext().getLookup().lookupResult(Technology.class));
         projListner = new ListLookupListener<>(projList, getContext().getLookup().lookupResult(Project.class));
     }
@@ -51,12 +58,12 @@ public class RelationController extends AbstractController {
         addChangeListenerToProjectTable();
         addChangeListenerToTechnologyTable();
     }
-    
-     private void addChangeListenerToProjectTable() {
+
+    private void addChangeListenerToProjectTable() {
         tableProj.getSelectionModel().getSelectedIndices().addListener((ListChangeListener.Change c) -> {
             selectedProject = empty();
             List<Integer> selectedIndizes = c.getList();
-            if(!selectedIndizes.isEmpty()){
+            if (!selectedIndizes.isEmpty()) {
                 tableTech.getSelectionModel().clearSelection();
                 Integer first = selectedIndizes.iterator().next();
                 Project project = projList.get(first);
@@ -68,7 +75,7 @@ public class RelationController extends AbstractController {
 
     private void addChangeListenerToTechnologyTable() {
         tableTech.getSelectionModel().getSelectedIndices().addListener((ListChangeListener.Change c) -> {
-            if(selectedProject.isPresent()){
+            if (selectedProject.isPresent()) {
                 Project project = selectedProject.get();
                 project.clear();
                 List<Integer> selectedIndizes = c.getList();
@@ -78,8 +85,7 @@ public class RelationController extends AbstractController {
     }
 
     @FXML
-    void update(ActionEvent event){
+    void update(ActionEvent event) {
     }
-
 
 }

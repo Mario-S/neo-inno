@@ -7,12 +7,14 @@ import org.controlsfx.validation.ValidationSupport;
 import static org.controlsfx.validation.Validator.createEmptyValidator;
 import org.inno.model.State;
 import org.inno.model.Technology;
+import org.springframework.stereotype.Component;
 
 /**
  * Controller for the 'Technologie' Tab.
  *
  * @author spindizzy
  */
+@Component
 public class TechnologyNodeController extends AbstractNodeController<Technology> {
 
     @FXML

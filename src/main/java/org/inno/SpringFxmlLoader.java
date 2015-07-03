@@ -31,17 +31,7 @@ public class SpringFxmlLoader {
             loader.setResources(bundle);
             
             loader.setControllerFactory((Class<?> clazz) -> {
-                Object bean = null;
-                try{
-                    bean = context.getBean(clazz);
-                }catch(NoSuchBeanDefinitionException exc){
-                    try {
-                        bean = clazz.newInstance();
-                    } catch (InstantiationException | IllegalAccessException ex) {
-                        throw new IllegalArgumentException(exc);
-                    }
-                }
-                return bean;
+                return context.getBean(clazz);
             });
             
             return loader.load(fxmlStream);

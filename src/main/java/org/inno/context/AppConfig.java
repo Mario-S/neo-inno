@@ -15,17 +15,20 @@ import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.io.File;
+import org.springframework.context.annotation.ComponentScan;
 
 
 /**
  * @author spindizzy
  */
 @Configuration
+@ComponentScan("org.inno")
 @Import(Neo4jAspectConfiguration.class)
 @EnableTransactionManagement
 @EnableNeo4jRepositories("org.inno.model")
 @EnableSpringConfigured
 public class AppConfig extends Neo4jConfiguration {
+
     @Bean
     public GraphDatabaseService graphDatabaseService() {
         // if you want to use Neo4j as a REST service

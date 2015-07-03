@@ -31,7 +31,7 @@ public class ModelStringFactoryTest {
     
     @Before
     public void setUp() {
-        context = Context.Instance;
+        context = new Context();
         
         classUnderTest = new ModelStringFactory(context.getLookup());
 

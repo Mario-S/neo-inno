@@ -4,15 +4,18 @@ import org.inno.context.Context;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author spindizzy
  */
 abstract class AbstractController implements Initializable{
-    private final Context context = Context.Instance;
+    @Autowired
+    private Context context;
     
     private final Logger logger;
 
@@ -26,6 +29,11 @@ abstract class AbstractController implements Initializable{
 
     protected final Logger getLogger() {
         return logger;
+    }
+    
+    @PostConstruct
+    protected void afterPropertiesSet() {
+        
     }
 
     @Override
