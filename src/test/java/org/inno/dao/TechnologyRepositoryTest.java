@@ -5,7 +5,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = TestConfig.class)
-@Ignore
 public class TechnologyRepositoryTest {
     
     @Autowired
