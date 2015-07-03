@@ -44,7 +44,7 @@ dependencies {
     "ch.qos.logback:logback-classic:1.1.2", \
     "org.netbeans.api:org-openide-util-lookup:RELEASE80",
     "com.github.jknack:handlebars:2.2.0",
-    "org.springframework.data:spring-data-neo4j-aspects:3.3.0.RELEASE",
+    "org.springframework.data:spring-data-neo4j-aspects:3.3.1.RELEASE",
     "javax.validation:validation-api:1.1.0.Final"
 
     testCompile "net.java.jemmy:JemmyFX:0.9.3-SNAPSHOT"

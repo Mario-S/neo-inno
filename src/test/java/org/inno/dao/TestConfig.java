@@ -1,4 +1,4 @@
-package org.inno.context;
+package org.inno.dao;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
@@ -17,22 +17,21 @@ import org.springframework.context.annotation.ComponentScan;
  * @author spindizzy
  */
 @Configuration
-@ComponentScan("org.inno")
+@ComponentScan(basePackages = {"org.inno.model", "org.inno.dao"})
 @EnableTransactionManagement
-@EnableNeo4jRepositories("org.inno.dao")
-public class AppConfig extends Neo4jConfiguration {
+@EnableNeo4jRepositories
+public class TestConfig extends Neo4jConfiguration {
 
-    public AppConfig() {
+    public TestConfig() {
         setBasePackage("org.inno.model");
     }
 
     @Bean
     public GraphDatabaseService graphDatabaseService() {
-
-        // if you want to use Neo4j as a REST service
+                // if you want to use Neo4j as a REST service
         // return new SpringRestGraphDatabase("http://localhost:7474/db/data/");
         // Use Neo4j as Odin intended (as an embedded service)
-        String path = System.getProperty("user.dir") + File.separator + "build";
+        String path = System.getProperty("user.dir") + File.separator + "build" + File.separator + "test";
 
         return new GraphDatabaseFactory().newEmbeddedDatabase(path);
     }
