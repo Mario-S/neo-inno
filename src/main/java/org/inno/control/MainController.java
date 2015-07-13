@@ -13,8 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
-import javax.annotation.PostConstruct;
 import org.openide.util.Lookup.Result;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -124,7 +124,8 @@ public class MainController extends AbstractController implements LookupListener
 
     @FXML
     void settings(final ActionEvent event) {
-        dialogFactory.create(new UnsupportedOperationException("not supported yet")).showAndWait();
+        TextInputDialog dlg = dialogFactory.createRestUrlDialog("WTF");
+        dlg.showAndWait().ifPresent(url -> System.out.println(url));
     }
 
 }
