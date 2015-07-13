@@ -60,7 +60,7 @@ public class MainController extends AbstractController implements LookupListener
 
     @Override
     protected void afterPropertiesSet() {
-        result = getContext().getLookup().lookupResult(org.inno.model.Node.class);
+        result = getLookupProvider().getLookup().lookupResult(org.inno.model.Node.class);
         result.addLookupListener(this);
     }
 
@@ -117,7 +117,7 @@ public class MainController extends AbstractController implements LookupListener
     }
 
     private String createExportString() {
-        ModelStringFactory factory = new ModelStringFactory(getContext().getLookup());
+        ModelStringFactory factory = new ModelStringFactory(getLookupProvider().getLookup());
 
         return factory.create();
     }

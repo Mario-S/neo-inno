@@ -142,7 +142,7 @@ abstract class AbstractNodeController<T extends Node> extends AbstractController
         @Override
         public void onChanged(Change<? extends T> change) {
 
-            InstanceContent content = getContext().getContent();
+            InstanceContent content = getLookupProvider().getContent();
             change.next();
             if (change.wasAdded()) {
                 change.getAddedSubList().forEach(n -> content.add(n));

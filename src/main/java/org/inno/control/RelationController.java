@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
-import javax.annotation.PostConstruct;
 import org.inno.model.Project;
 import org.inno.model.Technology;
 import org.springframework.stereotype.Component;
@@ -47,8 +46,8 @@ public class RelationController extends AbstractController {
 
     @Override
     protected void afterPropertiesSet() {
-        techListner = new ListLookupListener<>(techList, getContext().getLookup().lookupResult(Technology.class));
-        projListner = new ListLookupListener<>(projList, getContext().getLookup().lookupResult(Project.class));
+        techListner = new ListLookupListener<>(techList, getLookupProvider().getLookup().lookupResult(Technology.class));
+        projListner = new ListLookupListener<>(projList, getLookupProvider().getLookup().lookupResult(Project.class));
     }
 
     @Override

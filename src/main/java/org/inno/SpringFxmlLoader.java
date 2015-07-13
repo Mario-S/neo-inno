@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
-import org.inno.context.ContextProvider;
+import org.inno.context.ContextAccess;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -17,7 +17,7 @@ public class SpringFxmlLoader {
     private final ApplicationContext context;
 
     public SpringFxmlLoader() {
-        context = ContextProvider.Instance.getContext();
+        context = ContextAccess.Instance.getContext();
     }
 
     public <T> T load(URL url, ResourceBundle bundle) {

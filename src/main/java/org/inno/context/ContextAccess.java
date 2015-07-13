@@ -7,12 +7,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 /**
  * @author spindizzy
  */
-public enum ContextProvider {
+public enum ContextAccess {
     Instance;
 
     private final ApplicationContext context;
 
-    private ContextProvider() {
+    private ContextAccess() {
         context = new AnnotationConfigApplicationContext(AppConfig.class);
     }
 
