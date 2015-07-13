@@ -1,6 +1,6 @@
 package org.inno.control;
 
-import org.inno.context.Context;
+import org.inno.context.LookupAccess;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 abstract class AbstractController implements Initializable{
     @Autowired
-    private Context context;
+    private LookupAccess context;
     
     private final Logger logger;
 
@@ -23,7 +23,7 @@ abstract class AbstractController implements Initializable{
         this.logger = LoggerFactory.getLogger(getClass());
     }
 
-    protected final Context getContext() {
+    protected final LookupAccess getContext() {
         return context;
     }
 

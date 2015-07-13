@@ -3,7 +3,7 @@
  */
 package org.inno.control;
 
-import org.inno.context.Context;
+import org.inno.context.LookupAccess;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Sets.newHashSet;
 import java.util.Collection;
@@ -25,13 +25,13 @@ public class ModelStringFactoryTest {
     
     private ModelStringFactory classUnderTest;
     
-    private Context context;
+    private LookupAccess context;
     
     private Map<Project,Set<Technology>> relations;
     
     @Before
     public void setUp() {
-        context = new Context();
+        context = new LookupAccess();
         
         classUnderTest = new ModelStringFactory(context.getLookup());
 

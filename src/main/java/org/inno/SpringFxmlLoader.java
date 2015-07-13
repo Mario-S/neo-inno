@@ -5,10 +5,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
-import org.inno.context.AppConfig;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.inno.context.ContextProvider;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  *
@@ -19,7 +17,7 @@ public class SpringFxmlLoader {
     private final ApplicationContext context;
 
     public SpringFxmlLoader() {
-        context = new AnnotationConfigApplicationContext(AppConfig.class);
+        context = ContextProvider.Instance.getContext();
     }
 
     public <T> T load(URL url, ResourceBundle bundle) {

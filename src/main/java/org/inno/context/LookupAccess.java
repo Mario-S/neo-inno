@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
  * @author spindizzy
  */
 @Component
-public class Context implements Lookup.Provider{
+public class LookupAccess implements Lookup.Provider{
     
     private final Lookup lookup;
     private final InstanceContent content;
     
-    public Context() {
+    public LookupAccess() {
         content = new InstanceContent();
         lookup = new AbstractLookup(content);
     }
