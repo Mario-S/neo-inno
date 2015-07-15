@@ -1,7 +1,7 @@
 /*
  * Created by Schuetze Consulting Informationssysteme AG, Berlin.
  */
-package org.inno.model;
+package org.inno.control;
 
 import org.springframework.stereotype.Component;
 
@@ -11,6 +11,8 @@ import java.util.prefs.Preferences;
 
 
 /**
+ * Application Settings.
+ *
  * @author spindizzy
  */
 @Component
