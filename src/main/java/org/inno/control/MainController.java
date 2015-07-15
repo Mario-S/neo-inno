@@ -42,7 +42,8 @@ public class MainController extends AbstractController implements LookupListener
     private TextField txtFile;
 
     @FXML
-    private Button btnCreate;
+    private Button btnExport;
+    
 
     @FXML
     private Tab relationTab;
@@ -72,7 +73,7 @@ public class MainController extends AbstractController implements LookupListener
     @Override
     void initialize(final MessageFactory factory) {
         dialogFactory = new DialogFactory(factory);
-        btnCreate.disableProperty().bind(disableExportProperty);
+        btnExport.disableProperty().bind(disableExportProperty);
         relationTab.disableProperty().bind(disableRelationProperty);
         glassPane.visibleProperty().bind(busyProperty);
     }
@@ -133,4 +134,8 @@ public class MainController extends AbstractController implements LookupListener
         dlg.showAndWait().ifPresent(url -> settings.setRestUrl(url));
     }
 
+    @FXML
+    void save(ActionEvent event){
+        dialogFactory.create(new UnsupportedOperationException("not supported yet")).showAndWait();
+    }
 }

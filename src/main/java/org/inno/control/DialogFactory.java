@@ -9,7 +9,7 @@ import javafx.scene.control.TextInputDialog;
  *
  * @author spindizzy
  */
-class DialogFactory {
+final class DialogFactory {
     private ExceptionDialog exceptionDialog;
 
     private final MessageFactory messageFactory;

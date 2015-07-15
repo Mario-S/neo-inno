@@ -3,31 +3,34 @@ package org.inno.control;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+
 /**
- *
  * @author spindizzy
  */
-public final class MessageFactory {
+final class MessageFactory {
     private final ResourceBundle bundle;
 
-    MessageFactory(ResourceBundle bundle) {
+    MessageFactory(final ResourceBundle bundle) {
         this.bundle = bundle;
     }
-    
-    public String getMessage(String key){
+
+    String getMessage(final String key) {
         return getMessage(key, new Object());
     }
-            
-    public String getMessage(String key, Object ... args){
+
+    String getMessage(final String key, final Object... args) {
         String msg;
-        try{
+
+        try {
             msg = bundle.getString(key);
-            if(args != null && args.length > 0){
+
+            if ((args != null) && (args.length > 0)) {
                 msg = String.format(msg, args);
             }
-        }catch(MissingResourceException exc){
+        } catch (MissingResourceException exc) {
             msg = key;
         }
+
         return msg;
     }
 }

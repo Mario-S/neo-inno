@@ -46,8 +46,8 @@
                 </padding>
                 <TextField fx:id="txtFile"/>
                 <Button text="..." onAction="#handleFileSelection" />
-                <Button fx:id="btnCreate" text="%export" onAction="#export" />
-                <Button fx:id="btnPersist" text="%save">
+                <Button fx:id="btnExport" text="%export" onAction="#export" />
+                <Button fx:id="btnSave" text="%save" onAction="#save" >
                     <FlowPane.margin>
                         <Insets>
                             <left>10</left>
