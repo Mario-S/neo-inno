@@ -42,11 +42,21 @@
             <FlowPane alignment="BASELINE_RIGHT"  hgap="5"
                       style="-fx-border-color:grey;-fx-border-width: 1;-fx-border-style: solid;">
                 <padding>
-                    <Insets top="10" right="10" bottom="20" left="10"/>
+                    <Insets top="10" right="10" bottom="15" left="10"/>
                 </padding>
                 <TextField fx:id="txtFile"/>
                 <Button text="..." onAction="#handleFileSelection" />
                 <Button fx:id="btnCreate" text="%export" onAction="#export" />
+                <Button fx:id="btnPersist" text="%save">
+                    <FlowPane.margin>
+                        <Insets>
+                            <left>10</left>
+                        </Insets>
+                    </FlowPane.margin>
+                    <tooltip>
+                        <Tooltip text="%save.hint"/>
+                    </tooltip>
+                </Button>
             </FlowPane>
         </bottom>
 
