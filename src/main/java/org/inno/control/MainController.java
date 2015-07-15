@@ -15,10 +15,11 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
-import org.inno.model.Configuration;
+import org.inno.model.Settings;
 import org.openide.util.Lookup.Result;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -52,6 +53,9 @@ public class MainController extends AbstractController implements LookupListener
     private File exportFile;
 
     private DialogFactory dialogFactory;
+    
+    @Autowired
+    private Settings settings;
 
     public MainController() {
         disableExportProperty = new SimpleBooleanProperty(true);
@@ -125,9 +129,8 @@ public class MainController extends AbstractController implements LookupListener
 
     @FXML
     void settings(final ActionEvent event) {
-        Configuration conf = new Configuration();
-        TextInputDialog dlg = dialogFactory.createRestUrlDialog(conf.getRestUrl());
-        dlg.showAndWait().ifPresent(url -> conf.setRestUrl(url));
+        TextInputDialog dlg = dialogFactory.createRestUrlDialog(settings.getRestUrl());
+        dlg.showAndWait().ifPresent(url -> settings.setRestUrl(url));
     }
 
 }

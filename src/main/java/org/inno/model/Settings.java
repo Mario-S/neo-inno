@@ -3,6 +3,8 @@
  */
 package org.inno.model;
 
+import org.springframework.stereotype.Component;
+
 import org.springframework.util.StringUtils;
 
 import java.util.prefs.Preferences;
@@ -11,7 +13,8 @@ import java.util.prefs.Preferences;
 /**
  * @author spindizzy
  */
-public class Configuration {
+@Component
+public class Settings {
     private static final String KEY = "org.inno.rest.url";
 
     /** default REST service URL.* */
