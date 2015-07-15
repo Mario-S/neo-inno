@@ -15,6 +15,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
+import org.inno.model.Configuration;
 import org.openide.util.Lookup.Result;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -124,8 +125,9 @@ public class MainController extends AbstractController implements LookupListener
 
     @FXML
     void settings(final ActionEvent event) {
-        TextInputDialog dlg = dialogFactory.createRestUrlDialog("WTF");
-        dlg.showAndWait().ifPresent(url -> System.out.println(url));
+        Configuration conf = new Configuration();
+        TextInputDialog dlg = dialogFactory.createRestUrlDialog(conf.getRestUrl());
+        dlg.showAndWait().ifPresent(url -> conf.setRestUrl(url));
     }
 
 }
