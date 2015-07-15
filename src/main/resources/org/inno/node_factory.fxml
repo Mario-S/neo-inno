@@ -11,7 +11,7 @@
     <BorderPane>
         <fx:script source="actionlisteners.js"/>
         <top>
-            <MenuBar fx:id="menuBar" styleClass="iphone-toolbar">
+            <MenuBar fx:id="menuBar" styleClass="iphone-toolbar" minHeight="28" >
                 <menus>
                     <Menu text="%file">
                         <items>
