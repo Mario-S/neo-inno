@@ -46,7 +46,7 @@
                 </padding>
                 <TextField fx:id="txtFile"/>
                 <Button text="..." onAction="#handleFileSelection" />
-                <Button fx:id="btnCreate" text="Cypher Statement" onAction="#export" />
+                <Button fx:id="btnCreate" text="%export" onAction="#export" />
             </FlowPane>
         </bottom>
 
