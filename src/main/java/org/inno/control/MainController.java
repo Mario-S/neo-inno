@@ -1,5 +1,6 @@
 package org.inno.control;
 
+import org.inno.context.Settings;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -54,13 +55,13 @@ public class MainController extends AbstractController implements LookupListener
 
     private DialogFactory dialogFactory;
     
-    @Autowired
-    private Settings settings;
+    private final Settings settings;
 
     public MainController() {
         disableExportProperty = new SimpleBooleanProperty(true);
         disableRelationProperty = new SimpleBooleanProperty(true);
         busyProperty = new SimpleBooleanProperty(false);
+        settings = Settings.Instance;
     }
 
     @Override

@@ -1,9 +1,5 @@
-/*
- * Created by Schuetze Consulting Informationssysteme AG, Berlin.
- */
-package org.inno.control;
+package org.inno.context;
 
-import org.springframework.stereotype.Component;
 
 import org.springframework.util.StringUtils;
 
@@ -15,8 +11,10 @@ import java.util.prefs.Preferences;
  *
  * @author spindizzy
  */
-@Component
-public class Settings {
+public enum Settings {
+    
+    Instance;
+    
     private static final String KEY = "org.inno.rest.url";
 
     /** default REST service URL.* */
