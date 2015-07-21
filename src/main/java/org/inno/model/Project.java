@@ -14,6 +14,7 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
  *
  * @author spindizzy
  */
+@NodeEntity
 public class Project extends Node {
     @RelatedTo(type = "USES", direction = INCOMING)
     private final Set<Technology> technologies;
