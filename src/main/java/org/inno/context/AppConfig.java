@@ -14,6 +14,7 @@ import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.io.File;
+import org.springframework.data.neo4j.rest.SpringCypherRestGraphDatabase;
 
 
 /**
@@ -31,11 +32,13 @@ public class AppConfig extends Neo4jConfiguration {
     @Bean
     @Lazy
     public GraphDatabaseService graphDatabaseService() {
+        String url = Settings.Instance.getRestUrl();
+                
         // if you want to use Neo4j as a REST service
         // return new SpringRestGraphDatabase("http://localhost:7474/db/data/");
         // Use Neo4j as Odin intended (as an embedded service)
         String path = System.getProperty("user.dir") + File.separator + "build";
 
-        return new GraphDatabaseFactory().newEmbeddedDatabase(path);
+        return new SpringCypherRestGraphDatabase(url);
     }
 }
