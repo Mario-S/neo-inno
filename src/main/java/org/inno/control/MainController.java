@@ -46,6 +46,9 @@ public class MainController extends AbstractController implements LookupListener
 
     @FXML
     private Button btnExport;
+    
+    @FXML
+    private Button btnSave;
 
     @FXML
     private Tab relationTab;
@@ -79,6 +82,7 @@ public class MainController extends AbstractController implements LookupListener
     void initialize(final MessageFactory factory) {
         dialogFactory = new DialogFactory(factory);
         btnExport.disableProperty().bind(disableExportProperty);
+        btnSave.disableProperty().bind(disableRelationProperty);
         relationTab.disableProperty().bind(disableRelationProperty);
         glassPane.visibleProperty().bind(busyProperty);
     }
