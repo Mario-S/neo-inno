@@ -16,6 +16,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
+import org.inno.dao.TechnologyRepository;
+import org.inno.model.Technology;
+import org.openide.util.Lookup;
 import org.openide.util.Lookup.Result;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -43,7 +46,6 @@ public class MainController extends AbstractController implements LookupListener
 
     @FXML
     private Button btnExport;
-    
 
     @FXML
     private Tab relationTab;
@@ -54,8 +56,11 @@ public class MainController extends AbstractController implements LookupListener
     private File exportFile;
 
     private DialogFactory dialogFactory;
-    
+
     private final Settings settings;
+    
+    @Autowired
+    private TechnologyRepository technologyRepository;
 
     public MainController() {
         disableExportProperty = new SimpleBooleanProperty(true);
@@ -135,7 +140,9 @@ public class MainController extends AbstractController implements LookupListener
     }
 
     @FXML
-    void save(ActionEvent event){
-        dialogFactory.create(new UnsupportedOperationException("not supported yet")).showAndWait();
+    void save(ActionEvent event) {
+        Lookup lookup = getLookupProvider().getLookup();
+        Collection<? extends Technology> techs = lookup.lookupAll(Technology.class);
+        technologyRepository.save(techs);
     }
 }
