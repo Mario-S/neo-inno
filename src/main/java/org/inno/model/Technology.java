@@ -6,12 +6,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.util.Objects;
+import org.springframework.data.neo4j.annotation.NodeEntity;
 
 /**
  * Model class for a technology.
  *
  * @author spindizzy
  */
+@NodeEntity
 public class Technology extends Node{
 
     private final StringProperty layer = new SimpleStringProperty();

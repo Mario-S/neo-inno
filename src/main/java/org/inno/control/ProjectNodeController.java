@@ -1,6 +1,5 @@
 package org.inno.control;
 
-import org.controlsfx.validation.ValidationSupport;
 import org.inno.model.Project;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +12,6 @@ import org.springframework.stereotype.Component;
 public class ProjectNodeController extends AbstractNodeController<Project> {
 
     private Project model;
-
-    ProjectNodeController(ValidationSupport validationSupport) {
-        super(validationSupport);
-        createModel();
-    }
 
     public ProjectNodeController() {
         createModel();

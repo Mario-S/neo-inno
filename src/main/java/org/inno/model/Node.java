@@ -4,7 +4,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.NodeEntity;
 
 import java.util.Objects;
 
@@ -14,7 +13,6 @@ import java.util.Objects;
  *
  * @author spindizzy
  */
-@NodeEntity
 public class Node {
     @GraphId
     private Long id;
