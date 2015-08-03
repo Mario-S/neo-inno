@@ -1,6 +1,5 @@
 package org.inno.context;
 
-
 import org.springframework.util.StringUtils;
 
 import java.util.prefs.Preferences;
@@ -12,9 +11,8 @@ import java.util.prefs.Preferences;
  * @author spindizzy
  */
 public enum Settings {
-    
     Instance;
-    
+
     private static final String KEY = "org.inno.rest.url";
 
     /** default REST service URL.* */
@@ -25,7 +23,7 @@ public enum Settings {
     }
 
     public void setRestUrl(final String url) {
-        if (StringUtils.hasText(url) && !url.equalsIgnoreCase(DEFAULT_URL)) {
+        if (StringUtils.hasText(url)) {
             Preferences.userRoot().put(KEY, url);
         }
     }
