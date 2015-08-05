@@ -101,11 +101,11 @@
             GridPane.columnIndex="1" GridPane.rowIndex="5"/>
             
         <Button GridPane.columnIndex="0" GridPane.rowIndex="6" 
-                text="%add" 
+                text="%add" mnemonicParsing="true" 
                 onAction="#addToTable" 
                 minWidth="100"  styleClass="ui-icon-plus"/>
         <Button GridPane.columnIndex="0" GridPane.rowIndex="7" 
-                text="%remove"
+                text="%remove" mnemonicParsing="true" 
                 onAction="#removeFromTable" 
                 minWidth="100"  styleClass="ui-icon-trash"/>
 

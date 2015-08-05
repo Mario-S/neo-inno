@@ -11,9 +11,9 @@
     <BorderPane>
         <fx:script source="actionlisteners.js"/>
         <top>
-            <MenuBar fx:id="menuBar" styleClass="iphone-toolbar" minHeight="28" >
+            <MenuBar fx:id="menuBar" styleClass="iphone-toolbar" minHeight="28">
                 <menus>
-                    <Menu text="%file">
+                    <Menu text="%file" mnemonicParsing="true">
                         <items>
                             <MenuItem text="%settings" onAction="#settings" />
                             <SeparatorMenuItem  />
@@ -46,8 +46,8 @@
                 </padding>
                 <TextField fx:id="txtFile"/>
                 <Button text="..." onAction="#handleFileSelection" />
-                <Button fx:id="btnExport" text="%export" onAction="#export" />
-                <Button fx:id="btnSave" text="%save" onAction="#save" >
+                <Button fx:id="btnExport" text="%export" onAction="#export" mnemonicParsing="true" />
+                <Button fx:id="btnSave" text="%save" onAction="#save" mnemonicParsing="true">
                     <FlowPane.margin>
                         <Insets>
                             <left>10</left>

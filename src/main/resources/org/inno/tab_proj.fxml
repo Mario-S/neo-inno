@@ -47,12 +47,12 @@
             
         <Button fx:id="btnAddProj"
                 GridPane.columnIndex="0" GridPane.rowIndex="2"
-                text="%add"
+                text="%add" mnemonicParsing="true" 
                 onAction="#addToTable"
                 minWidth="100" styleClass="ui-icon-plus"/>
         <Button fx:id="btnRemoveProj"
                 GridPane.columnIndex="0" GridPane.rowIndex="3"
-                text="%remove" 
+                text="%remove" mnemonicParsing="true" 
                 onAction="#removeFromTable" 
                 minWidth="100" styleClass="ui-icon-trash"/>
     
