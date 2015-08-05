@@ -1,12 +1,12 @@
 package org.inno.model;
 
-import static org.neo4j.graphdb.Direction.INCOMING;
+import static org.neo4j.graphdb.Direction.OUTGOING;
 
+import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.springframework.data.neo4j.annotation.NodeEntity;
 
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
  */
 @NodeEntity
 public class Project extends Node {
-    @RelatedTo(type = "USES", direction = INCOMING)
+    @RelatedTo(type = "USES", direction = OUTGOING)
     private final Set<Technology> technologies;
 
     public Project() {
