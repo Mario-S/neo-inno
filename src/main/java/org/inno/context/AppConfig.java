@@ -2,10 +2,10 @@ package org.inno.context;
 
 import static com.google.common.collect.Sets.newHashSet;
 
-import org.inno.converter.StatePropertyToStringConverterFactory;
-import org.inno.converter.StringPropertyToStringConverterFactory;
-import org.inno.converter.StringToStatePropertyConverterFactory;
-import org.inno.converter.StringToStringPropertyConverterFactory;
+import org.inno.converter.StatePropertyToStringConverter;
+import org.inno.converter.StringPropertyToStringConverter;
+import org.inno.converter.StringToStatePropertyConverter;
+import org.inno.converter.StringToStringPropertyConverter;
 
 import org.neo4j.graphdb.GraphDatabaseService;
 
@@ -40,10 +40,11 @@ public class AppConfig extends Neo4jConfiguration {
 
     private void addConversionService() {
         ConversionServiceFactoryBean conversionService = new ConversionServiceFactoryBean();
-        conversionService.setConverters(newHashSet(new StringPropertyToStringConverterFactory(),
-                new StringToStringPropertyConverterFactory(),
-                new StatePropertyToStringConverterFactory(),
-                new StringToStatePropertyConverterFactory()));
+        conversionService.setConverters(
+            newHashSet(new StringPropertyToStringConverter(),
+                new StringToStringPropertyConverter(),
+                new StatePropertyToStringConverter(),
+                new StringToStatePropertyConverter()));
         conversionService.afterPropertiesSet();
         setConversionService(conversionService.getObject());
     }
