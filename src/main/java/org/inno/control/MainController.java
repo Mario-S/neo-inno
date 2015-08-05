@@ -16,7 +16,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
+import org.inno.dao.ProjectRepository;
 import org.inno.dao.TechnologyRepository;
+import org.inno.model.Project;
 import org.inno.model.Technology;
 import org.openide.util.Lookup;
 import org.openide.util.Lookup.Result;
@@ -64,6 +66,9 @@ public class MainController extends AbstractController implements LookupListener
     
     @Autowired
     private TechnologyRepository technologyRepository;
+    
+    @Autowired
+    private ProjectRepository projectRepository;
 
     public MainController() {
         disableExportProperty = new SimpleBooleanProperty(true);
@@ -146,7 +151,12 @@ public class MainController extends AbstractController implements LookupListener
     @FXML
     void save(ActionEvent event) {
         Lookup lookup = getLookupProvider().getLookup();
+        
+        Collection<? extends Project> projects = lookup.lookupAll(Project.class);
+        projectRepository.save(projects);
+        
         Collection<? extends Technology> techs = lookup.lookupAll(Technology.class);
         technologyRepository.save(techs);
+
     }
 }
