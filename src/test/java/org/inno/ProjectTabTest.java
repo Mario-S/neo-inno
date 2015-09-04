@@ -1,20 +1,12 @@
 package org.inno;
 
-import java.util.Set;
 import java.util.concurrent.TimeoutException;
-import javafx.scene.control.TableView;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.BeforeClass;
-import static org.testfx.api.FxAssert.verifyThat;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
-import static org.testfx.matcher.base.NodeMatchers.hasText;
-import org.testfx.service.query.NodeQuery;
 
 /**
  *
